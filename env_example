@@ -1,0 +1,11 @@
+# Application
+PORT=3333
+
+# Banco de dados Local
+DB_CLIENT=mysql
+DB_PORT=3306
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=efillipi
+DB_DATABASE=api
+DB_SYNCHRONIZE=true
