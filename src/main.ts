@@ -22,8 +22,7 @@ async function server() {
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
 
-  await app.listen(PORT, () => {
-    console.log(`💻 Starting in http://localhost/:${PORT}`);
-  });
+  await app.listen(PORT);
 }
-server();
+
+server().then(() => console.log(`💻 Starting in http://localhost/:${PORT}`));

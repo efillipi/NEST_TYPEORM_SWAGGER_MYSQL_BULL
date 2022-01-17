@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
 import { FindUserByidService } from '../../services/find-user-byid/find-user-byid.service';
@@ -21,7 +21,7 @@ export class FindUserByIdController {
     description: 'User not found',
     type: NotFoundSwagger,
   })
-  async show(@Param('id') id: number) {
+  async show(@Param('id', new ParseIntPipe()) id: number) {
     return await this.service.findById(id);
   }
 }

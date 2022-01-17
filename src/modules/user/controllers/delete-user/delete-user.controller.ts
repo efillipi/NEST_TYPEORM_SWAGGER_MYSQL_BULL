@@ -1,4 +1,4 @@
-import { Controller, Delete, Param } from '@nestjs/common';
+import { Controller, Delete, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
 import { DeleteUserService } from '../../services/delete-user/delete-user.service';
@@ -15,7 +15,7 @@ export class DeleteUserController {
     description: 'User not found',
     type: NotFoundSwagger,
   })
-  async delete(@Param('id') id: number) {
+  async delete(@Param('id', new ParseIntPipe()) id: number) {
     return await this.service.delete(id);
   }
 }

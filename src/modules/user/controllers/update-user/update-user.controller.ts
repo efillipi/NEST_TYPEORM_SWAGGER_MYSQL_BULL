@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Put } from '@nestjs/common';
+import { Body, Controller, Param, ParseIntPipe, Put } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
@@ -28,7 +28,10 @@ export class UpdateUserController {
     description: 'Invalid data',
     type: BadRequestSwagger,
   })
-  async update(@Param('id') id: number, @Body() body: IUpdateUserDTO) {
+  async update(
+    @Param('id', new ParseIntPipe()) id: number,
+    @Body() body: IUpdateUserDTO,
+  ) {
     return await this.service.update(id, body);
   }
 }
