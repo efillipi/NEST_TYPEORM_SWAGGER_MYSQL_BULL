@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
-const PORT = process.env.PORT;
+const API_PORT = process.env.API_PORT;
 
 async function server() {
   const app = await NestFactory.create(AppModule);
@@ -22,7 +22,9 @@ async function server() {
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
 
-  await app.listen(PORT);
+  await app.listen(API_PORT);
 }
 
-server().then(() => console.log(`💻 Starting in http://localhost/:${PORT}`));
+server().then(() =>
+  console.log(`💻 Starting in http://localhost/:${API_PORT}`),
+);

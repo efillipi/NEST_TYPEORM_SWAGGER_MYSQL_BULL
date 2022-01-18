@@ -1,5 +1,7 @@
 # Application
-PORT=3333
+API_PORT=3333
+JWT_KEY=41fbb223d60aea75c61b380adf59591d
+JWT_EXPIRESIN=3h
 
 # Banco de dados Local
 DB_CLIENT=mysql

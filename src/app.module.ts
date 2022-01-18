@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnectionOptions } from 'typeorm';
 import { UserModule } from './modules/user/user.module';
 import { HashProviderService } from './shared/providers/hash-provider/hash-provider.service';
+import { AuthProviderService } from './shared/providers/auth-provider/auth-provider.service';
 
 @Module({
   imports: [
@@ -14,6 +15,6 @@ import { HashProviderService } from './shared/providers/hash-provider/hash-provi
     }),
     UserModule,
   ],
-  providers: [HashProviderService],
+  providers: [HashProviderService, AuthProviderService],
 })
 export class AppModule {}

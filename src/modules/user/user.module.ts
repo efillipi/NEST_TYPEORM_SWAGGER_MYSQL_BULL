@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
+import User from './entities/User';
 import { CreateUserController } from './controllers/create-user/create-user.controller';
 import { CreateUserService } from './services/create-user/create-user.service';
 import { ListUsersService } from './services/list-users/list-users.service';
@@ -11,9 +11,10 @@ import { DeleteUserService } from './services/delete-user/delete-user.service';
 import { FindUserByIdController } from './controllers/find-user-by-id/find-user-by-id.controller';
 import { UpdateUserController } from './controllers/update-user/update-user.controller';
 import { DeleteUserController } from './controllers/delete-user/delete-user.controller';
-
-import User from './entities/User';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
+import { AuthenticationUserService } from './services/authentication-user/authentication-user.service';
+import { AuthenticationUserController } from './controllers/authentication-user/authentication-user.controller';
+import { AuthProviderService } from 'src/shared/providers/auth-provider/auth-provider.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
@@ -23,6 +24,7 @@ import { HashProviderService } from 'src/shared/providers/hash-provider/hash-pro
     FindUserByIdController,
     UpdateUserController,
     DeleteUserController,
+    AuthenticationUserController,
   ],
   providers: [
     CreateUserService,
@@ -31,6 +33,8 @@ import { HashProviderService } from 'src/shared/providers/hash-provider/hash-pro
     UpdateUserService,
     DeleteUserService,
     HashProviderService,
+    AuthenticationUserService,
+    AuthProviderService,
   ],
   exports: [
     CreateUserService,
