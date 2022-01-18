@@ -1,10 +1,18 @@
-import { Controller, Delete, Param, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Param,
+  ParseIntPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
 import { DeleteUserService } from '../../services/delete-user/delete-user.service';
 
 @Controller('users')
 @ApiTags('users')
+@UseGuards(AuthGuard('jwt'))
 export class DeleteUserController {
   constructor(private readonly service: DeleteUserService) {}
   @Delete(':id')

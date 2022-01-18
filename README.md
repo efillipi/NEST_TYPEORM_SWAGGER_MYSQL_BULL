@@ -6,6 +6,7 @@
 - [x] Mysql,
 - [x] TYPEORM
 - [x] Swagger
+- [x] JWT
 
 ## Getting started
 

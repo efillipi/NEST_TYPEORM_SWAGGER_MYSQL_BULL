@@ -1,4 +1,12 @@
-import { Body, Controller, Param, ParseIntPipe, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Param,
+  ParseIntPipe,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
@@ -8,6 +16,7 @@ import { UpdateUserService } from '../../services/update-user/update-user.servic
 
 @Controller('users')
 @ApiTags('users')
+@UseGuards(AuthGuard('jwt'))
 export class UpdateUserController {
   constructor(private readonly service: UpdateUserService) {}
 

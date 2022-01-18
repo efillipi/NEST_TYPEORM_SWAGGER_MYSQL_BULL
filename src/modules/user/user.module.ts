@@ -12,9 +12,6 @@ import { FindUserByIdController } from './controllers/find-user-by-id/find-user-
 import { UpdateUserController } from './controllers/update-user/update-user.controller';
 import { DeleteUserController } from './controllers/delete-user/delete-user.controller';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
-import { AuthenticationUserService } from './services/authentication-user/authentication-user.service';
-import { AuthenticationUserController } from './controllers/authentication-user/authentication-user.controller';
-import { AuthProviderService } from 'src/shared/providers/auth-provider/auth-provider.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
@@ -24,7 +21,6 @@ import { AuthProviderService } from 'src/shared/providers/auth-provider/auth-pro
     FindUserByIdController,
     UpdateUserController,
     DeleteUserController,
-    AuthenticationUserController,
   ],
   providers: [
     CreateUserService,
@@ -33,8 +29,6 @@ import { AuthProviderService } from 'src/shared/providers/auth-provider/auth-pro
     UpdateUserService,
     DeleteUserService,
     HashProviderService,
-    AuthenticationUserService,
-    AuthProviderService,
   ],
   exports: [
     CreateUserService,
