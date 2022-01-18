@@ -13,6 +13,7 @@ import { UpdateUserController } from './controllers/update-user/update-user.cont
 import { DeleteUserController } from './controllers/delete-user/delete-user.controller';
 
 import User from './entities/User';
+import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
@@ -29,6 +30,7 @@ import User from './entities/User';
     FindUserByidService,
     UpdateUserService,
     DeleteUserService,
+    HashProviderService,
   ],
   exports: [
     CreateUserService,
