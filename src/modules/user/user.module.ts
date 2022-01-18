@@ -12,7 +12,7 @@ import { FindUserByIdController } from './controllers/find-user-by-id/find-user-
 import { UpdateUserController } from './controllers/update-user/update-user.controller';
 import { DeleteUserController } from './controllers/delete-user/delete-user.controller';
 
-import User from './entities/User';
+import User from './entities/User.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],

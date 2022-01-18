@@ -1,3 +1,3 @@
-import User from '../entities/User';
+import User from '../entities/User.entity';
 
 export class ListUserSwagger extends User {}

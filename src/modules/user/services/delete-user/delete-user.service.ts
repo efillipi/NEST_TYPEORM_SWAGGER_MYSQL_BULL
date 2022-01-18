@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import AppError from 'src/shared/errors/AppError';
 import { Repository } from 'typeorm';
-import User from '../../entities/User';
+import User from '../../entities/User.entity';
 
 @Injectable()
 export class DeleteUserService {
