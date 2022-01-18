@@ -3,8 +3,8 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
 import IUpdateUserDTO from '../../dtos/IUpdateUserDTO';
+import User from '../../entities/User';
 import { UpdateUserService } from '../../services/update-user/update-user.service';
-import { UpdateUserSwagger } from '../../swagger/UpdateUser.swagger';
 
 @Controller('users')
 @ApiTags('users')
@@ -16,7 +16,7 @@ export class UpdateUserController {
   @ApiResponse({
     status: 200,
     description: 'Update user success',
-    type: UpdateUserSwagger,
+    type: User,
   })
   @ApiResponse({
     status: 404,

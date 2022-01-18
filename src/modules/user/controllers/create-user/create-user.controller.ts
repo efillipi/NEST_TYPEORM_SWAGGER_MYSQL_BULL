@@ -1,9 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateUserService } from '../../services/create-user/create-user.service';
 import ICreateUserDTO from '../../dtos/ICreateUserDTO';
-import { CreateUserSwagger } from '../../swagger/CreateUser.swagger';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
+import User from '../../entities/User';
 
 @Controller('users')
 @ApiTags('users')
@@ -14,7 +14,7 @@ export class CreateUserController {
   @ApiResponse({
     status: 201,
     description: 'Create new user success',
-    type: CreateUserSwagger,
+    type: User,
   })
   @ApiResponse({
     status: 400,

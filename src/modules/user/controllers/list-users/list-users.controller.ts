@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import User from '../../entities/User';
 import { ListUsersService } from '../../services/list-users/list-users.service';
-import { ListUserSwagger } from '../../swagger/ListUser.swagger';
 
 @Controller('users')
 @ApiTags('users')
@@ -13,7 +13,7 @@ export class ListUsersController {
   @ApiResponse({
     status: 200,
     description: 'List users success',
-    type: ListUserSwagger,
+    type: User,
     isArray: true,
   })
   async find() {

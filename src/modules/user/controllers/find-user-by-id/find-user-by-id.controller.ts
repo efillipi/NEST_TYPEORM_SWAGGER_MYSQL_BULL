@@ -1,8 +1,8 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
+import User from '../../entities/User';
 import { FindUserByidService } from '../../services/find-user-byid/find-user-byid.service';
-import { FindByIdUser } from '../../swagger/FindByIdUser.swagger';
 
 @Controller('users')
 @ApiTags('users')
@@ -14,7 +14,7 @@ export class FindUserByIdController {
   @ApiResponse({
     status: 200,
     description: 'Find user success',
-    type: FindByIdUser,
+    type: User,
   })
   @ApiResponse({
     status: 404,
