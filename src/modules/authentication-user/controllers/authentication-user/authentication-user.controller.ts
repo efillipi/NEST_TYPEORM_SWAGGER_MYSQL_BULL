@@ -1,14 +1,17 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, Controller, Post, Req } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import IRequestAuthenticationUserDTO from '../../dtos/IRequestAuthenticationUserDTO';
 import IResponseAuthenticationUserDTO from '../../dtos/IResponseAuthenticationUserDTO';
+import { AuthenticationUserService } from '../../services/authentication-user/authentication-user.service';
 
 @Controller('sessions')
 @ApiTags('sessions')
 export class AuthenticationUserController {
-  @UseGuards(AuthGuard('local'))
+  constructor(
+    private readonly authenticationUserService: AuthenticationUserService,
+  ) {}
+
   @Post()
   @ApiOperation({ summary: 'login in api' })
   @ApiResponse({
@@ -26,7 +29,7 @@ export class AuthenticationUserController {
     description: 'Authentication Failure',
     type: BadRequestSwagger,
   })
-  async login(@Req() req: any, @Body() body: IRequestAuthenticationUserDTO) {
-    return req.user;
+  async login(@Body() body: IRequestAuthenticationUserDTO) {
+    return await this.authenticationUserService.validateUser(body);
   }
 }

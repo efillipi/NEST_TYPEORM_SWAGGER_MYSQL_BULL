@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import IRequestAuthenticationUserDTO from 'src/modules/user/dtos/IRequestAuthenticationUserDTO';
 import User from 'src/modules/user/entities/User';
 import { FindUserByidService } from 'src/modules/user/services/find-user-byid/find-user-byid.service';
-import { AuthProviderService } from 'src/shared/providers/auth-provider/auth-provider.service';
+import AppError from 'src/shared/errors/AppError';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class AuthenticationUserService {
         email: data.email,
       });
     } catch (error) {
-      return null;
+      throw new AppError('Authentication Failure', 401);
     }
 
     const matchPassword = await this.hashProviderService.compareHash(
@@ -30,7 +30,7 @@ export class AuthenticationUserService {
     );
 
     if (!matchPassword) {
-      return null;
+      throw new AppError('Authentication Failure', 401);
     }
 
     const payload = { sub: this.user.id, email: this.user.email };
