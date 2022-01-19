@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import AppError from 'src/shared/errors/AppError';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
-import { Repository } from 'typeorm';
+
 import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 import User from '../../entities/User';
+import { UserRepositoryService } from '../../repositories/UserRepository';
 
 @Injectable()
 export class CreateUserService {
+  private user: User;
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    private readonly userRepository: UserRepositoryService,
 
     private hashProviderService: HashProviderService,
   ) {}
-  async create(data: ICreateUserDTO) {
-    const userExsists = await this.userRepository.findOne({
-      where: { email: data.email },
+  async create(data: ICreateUserDTO): Promise<User> {
+    const userExsists = await this.userRepository.findSomething({
+      email: data.email,
     });
 
     if (userExsists) {
@@ -25,12 +25,12 @@ export class CreateUserService {
 
     const hash = await this.hashProviderService.generateHash(data.password);
 
-    const user = this.userRepository.create({
+    this.user = await this.userRepository.create({
       name: data.name,
       email: data.email,
       password: hash,
     });
 
-    return this.userRepository.save(user);
+    return await this.userRepository.save(this.user);
   }
 }

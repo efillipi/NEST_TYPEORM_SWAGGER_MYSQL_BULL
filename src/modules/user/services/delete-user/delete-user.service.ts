@@ -1,22 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import AppError from 'src/shared/errors/AppError';
-import { Repository } from 'typeorm';
 import User from '../../entities/User';
+import { UserRepositoryService } from '../../repositories/UserRepository';
 
 @Injectable()
 export class DeleteUserService {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-  ) {}
-  async delete(id: number) {
-    const user = await this.userRepository.findOne(id);
+  private user: User;
+  constructor(private readonly userRepository: UserRepositoryService) {}
+  async delete(id: number): Promise<void> {
+    this.user = await this.userRepository.findSomething({ id });
 
-    if (!user) {
+    if (!this.user) {
       throw new AppError('User not found', 404);
     }
 
-    await this.userRepository.delete(user.id);
+    await this.userRepository.delete(id);
   }
 }

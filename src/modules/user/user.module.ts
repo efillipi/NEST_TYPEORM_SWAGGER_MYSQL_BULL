@@ -12,6 +12,7 @@ import { FindUserByIdController } from './controllers/find-user-by-id/find-user-
 import { UpdateUserController } from './controllers/update-user/update-user.controller';
 import { DeleteUserController } from './controllers/delete-user/delete-user.controller';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
+import { UserRepositoryService } from './repositories/UserRepository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
@@ -29,6 +30,7 @@ import { HashProviderService } from 'src/shared/providers/hash-provider/hash-pro
     UpdateUserService,
     DeleteUserService,
     HashProviderService,
+    UserRepositoryService,
   ],
   exports: [
     CreateUserService,
@@ -36,6 +38,7 @@ import { HashProviderService } from 'src/shared/providers/hash-provider/hash-pro
     FindUserByidService,
     UpdateUserService,
     DeleteUserService,
+    UserRepositoryService,
   ],
 })
 export class UserModule {}

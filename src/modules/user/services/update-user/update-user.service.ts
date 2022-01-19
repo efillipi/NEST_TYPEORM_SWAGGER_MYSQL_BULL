@@ -1,26 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import AppError from 'src/shared/errors/AppError';
-import { Repository } from 'typeorm';
 import IUpdateUserDTO from '../../dtos/IUpdateUserDTO';
 import User from '../../entities/User';
+import { UserRepositoryService } from '../../repositories/UserRepository';
 
 @Injectable()
 export class UpdateUserService {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-  ) {}
+  private user: User;
+  constructor(private readonly userRepository: UserRepositoryService) {}
 
-  async update(id: number, data: IUpdateUserDTO) {
-    const user = await this.userRepository.findOne(id);
+  async update(id: number, data: IUpdateUserDTO): Promise<User> {
+    this.user = await this.userRepository.findSomething({ id });
 
-    if (!user) {
+    if (!this.user) {
       throw new AppError('User not found', 404);
     }
 
-    this.userRepository.merge(user, data);
+    this.userRepository.merge(this.user, data);
 
-    return await this.userRepository.save(user);
+    return await this.userRepository.save(this.user);
   }
 }

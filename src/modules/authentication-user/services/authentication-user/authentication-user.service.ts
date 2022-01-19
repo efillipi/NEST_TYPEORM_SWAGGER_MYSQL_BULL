@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import IRequestAuthenticationUserDTO from 'src/modules/user/dtos/IRequestAuthenticationUserDTO';
 import User from 'src/modules/user/entities/User';
-import { FindUserByidService } from 'src/modules/user/services/find-user-byid/find-user-byid.service';
+import { UserRepositoryService } from 'src/modules/user/repositories/UserRepository';
 import AppError from 'src/shared/errors/AppError';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 
@@ -10,17 +10,17 @@ import { HashProviderService } from 'src/shared/providers/hash-provider/hash-pro
 export class AuthenticationUserService {
   private user: User;
   constructor(
-    private readonly findUserByidService: FindUserByidService,
-    private hashProviderService: HashProviderService,
+    private readonly userRepository: UserRepositoryService,
+    private readonly hashProviderService: HashProviderService,
     private readonly jwtService: JwtService,
   ) {}
 
   async validateUser(data: IRequestAuthenticationUserDTO) {
-    try {
-      this.user = await this.findUserByidService.findOneOrFail({
-        email: data.email,
-      });
-    } catch (error) {
+    this.user = await this.userRepository.findSomething({
+      email: data.email,
+    });
+
+    if (!this.user) {
       throw new AppError('Authentication Failure', 401);
     }
 
