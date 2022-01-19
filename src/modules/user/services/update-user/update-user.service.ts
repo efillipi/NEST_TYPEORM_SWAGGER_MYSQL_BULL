@@ -16,7 +16,7 @@ export class UpdateUserService {
       throw new AppError('User not found', 404);
     }
 
-    this.userRepository.merge(this.user, data);
+    await this.userRepository.merge(this.user, data);
 
     return await this.userRepository.save(this.user);
   }
