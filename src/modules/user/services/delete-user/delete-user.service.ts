@@ -7,7 +7,7 @@ import { UserRepositoryService } from '../../repositories/UserRepository';
 export class DeleteUserService {
   private user: User;
   constructor(private readonly userRepository: UserRepositoryService) {}
-  async delete(id: number): Promise<void> {
+  async execute(id: number): Promise<void> {
     this.user = await this.userRepository.findSomething({ id });
 
     if (!this.user) {

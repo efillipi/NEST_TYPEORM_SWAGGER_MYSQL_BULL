@@ -24,6 +24,6 @@ export class DeleteUserController {
     type: NotFoundSwagger,
   })
   async delete(@Param('id', new ParseIntPipe()) id: number) {
-    return await this.service.delete(id);
+    return await this.service.execute(id);
   }
 }

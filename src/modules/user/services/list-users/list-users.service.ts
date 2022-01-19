@@ -6,7 +6,7 @@ import { UserRepositoryService } from '../../repositories/UserRepository';
 export class ListUsersService {
   constructor(private readonly userRepository: UserRepositoryService) {}
 
-  async find(): Promise<User[]> {
+  async execute(): Promise<User[]> {
     return await this.userRepository.find();
   }
 }

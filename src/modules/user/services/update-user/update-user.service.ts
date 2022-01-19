@@ -9,7 +9,7 @@ export class UpdateUserService {
   private user: User;
   constructor(private readonly userRepository: UserRepositoryService) {}
 
-  async update(id: number, data: IUpdateUserDTO): Promise<User> {
+  async execute(id: number, data: IUpdateUserDTO): Promise<User> {
     this.user = await this.userRepository.findSomething({ id });
 
     if (!this.user) {

@@ -14,7 +14,7 @@ export class CreateUserService {
 
     private hashProviderService: HashProviderService,
   ) {}
-  async create(data: ICreateUserDTO): Promise<User> {
+  async execute(data: ICreateUserDTO): Promise<User> {
     const userExsists = await this.userRepository.findSomething({
       email: data.email,
     });
@@ -31,6 +31,6 @@ export class CreateUserService {
       password: hash,
     });
 
-    return await this.userRepository.save(this.user);
+    return this.user;
   }
 }

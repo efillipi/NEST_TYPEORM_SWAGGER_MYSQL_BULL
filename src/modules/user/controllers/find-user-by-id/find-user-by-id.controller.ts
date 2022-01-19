@@ -30,6 +30,6 @@ export class FindUserByIdController {
     type: NotFoundSwagger,
   })
   async show(@Param('id', new ParseIntPipe()) id: number) {
-    return await this.service.findById(id);
+    return await this.service.execute(id);
   }
 }

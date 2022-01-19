@@ -41,6 +41,6 @@ export class UpdateUserController {
     @Param('id', new ParseIntPipe()) id: number,
     @Body() body: IUpdateUserDTO,
   ) {
-    return await this.service.update(id, body);
+    return await this.service.execute(id, body);
   }
 }

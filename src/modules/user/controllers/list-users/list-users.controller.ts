@@ -19,6 +19,6 @@ export class ListUsersController {
     isArray: true,
   })
   async find() {
-    return await this.service.find();
+    return await this.service.execute();
   }
 }

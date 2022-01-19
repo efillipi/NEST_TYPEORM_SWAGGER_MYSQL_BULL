@@ -24,6 +24,6 @@ export class CreateUserController {
     type: BadRequestSwagger,
   })
   async create(@Body() body: ICreateUserDTO) {
-    return await this.service.create(body);
+    return await this.service.execute(body);
   }
 }
