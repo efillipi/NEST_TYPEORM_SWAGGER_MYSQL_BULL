@@ -20,7 +20,7 @@ export class UpdateRoleService {
       name: data.name,
     });
 
-    if (roleExists) {
+    if (roleExists && roleExists.id !== this.role.id) {
       throw new AppError('Role already registered', 409);
     }
 
