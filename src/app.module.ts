@@ -4,6 +4,7 @@ import { getConnectionOptions } from 'typeorm';
 import { UserModule } from './modules/user/user.module';
 import { HashProviderService } from './shared/providers/hash-provider/hash-provider.service';
 import { AuthenticationUserModule } from './modules/authentication-user/authentication-user.module';
+import { RolesModule } from './modules/roles/roles.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AuthenticationUserModule } from './modules/authentication-user/authenti
     }),
     UserModule,
     AuthenticationUserModule,
+    RolesModule,
   ],
   providers: [HashProviderService],
 })
