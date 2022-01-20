@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import IRequestAuthenticationUserDTO from '../../dtos/IRequestAuthenticationUserDTO';

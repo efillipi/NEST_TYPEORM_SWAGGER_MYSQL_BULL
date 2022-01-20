@@ -1,20 +1,8 @@
-import { IsNotEmpty, IsEmail, IsString } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import Role from 'src/modules/roles/entities/Role';
 
 export default class ICreateUserDTO {
-  @IsNotEmpty()
-  @IsString()
-  @ApiProperty()
   name: string;
-
-  @IsNotEmpty()
-  @IsEmail()
-  @IsString()
-  @ApiProperty()
   email: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @ApiProperty()
   password: string;
+  roles: Role[];
 }

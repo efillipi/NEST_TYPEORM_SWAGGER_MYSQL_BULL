@@ -4,7 +4,7 @@ import {
   DeepPartial,
   FindConditions,
   FindManyOptions,
-  FindOneOptions,
+  In,
   Repository,
 } from 'typeorm';
 import ICreateRoleDTO from '../dtos/ICreateRoleDTO';
@@ -27,11 +27,8 @@ export class RoleRepositoryService {
     return await this.repository.find(options);
   }
 
-  public async findSomething(
-    conditions: FindConditions<Role>,
-    options?: FindOneOptions<Role>,
-  ): Promise<Role> {
-    return await this.repository.findOne(conditions, options);
+  public async findSomething(conditions: FindConditions<Role>): Promise<Role> {
+    return await this.repository.findOne(conditions, { relations: ['users'] });
   }
 
   public async save(data: Role): Promise<Role> {
@@ -44,5 +41,15 @@ export class RoleRepositoryService {
 
   public async delete(id: number): Promise<void> {
     await this.repository.delete(id);
+  }
+
+  public async findByNames(names: string[]): Promise<Role[]> {
+    const roles = await this.repository.find({
+      where: {
+        name: In(names),
+      },
+    });
+
+    return roles;
   }
 }

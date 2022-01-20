@@ -1,10 +1,10 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { CreateUserService } from '../../services/create-user/create-user.service';
-import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import User from '../../entities/User';
 import { AuthGuard } from '@nestjs/passport';
+import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 
 @Controller('users')
 @ApiTags('users')
@@ -23,7 +23,17 @@ export class CreateUserController {
     description: 'Invalid data',
     type: BadRequestSwagger,
   })
-  async create(@Body() body: ICreateUserDTO) {
+  @ApiResponse({
+    status: 409,
+    description: 'Email is already being used',
+    type: BadRequestSwagger,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Role or Roles not found',
+    type: BadRequestSwagger,
+  })
+  async create(@Body() body: IRequestCreateUserDTO) {
     return await this.service.execute(body);
   }
 }

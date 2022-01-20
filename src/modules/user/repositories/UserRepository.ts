@@ -4,7 +4,6 @@ import {
   DeepPartial,
   FindConditions,
   FindManyOptions,
-  FindOneOptions,
   Repository,
 } from 'typeorm';
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
@@ -29,9 +28,8 @@ export class UserRepositoryService {
 
   public async findSomething(
     conditions: FindConditions<User>,
-    options?: FindOneOptions<User>,
   ): Promise<User | undefined> {
-    return await this.repository.findOne(conditions, options);
+    return await this.repository.findOne(conditions, { relations: ['roles'] });
   }
 
   public async save(data: User): Promise<User> {

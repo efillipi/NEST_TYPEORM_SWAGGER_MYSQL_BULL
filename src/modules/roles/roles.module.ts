@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from '../user/user.module';
 import { RoleRepositoryService } from './repositories/RoleRepository';
 import { CreateRoleService } from './services/create-role/create-role.service';
 import { UpdateRoleService } from './services/update-role/update-role.service';
@@ -15,7 +14,14 @@ import { FindRoleByIdController } from './controllers/find-role-by-id/find-role-
 import Role from './entities/Role';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Role]), UserModule],
+  imports: [TypeOrmModule.forFeature([Role])],
+  controllers: [
+    CreateRoleController,
+    UpdateRoleController,
+    ListRolesController,
+    DeleteRoleController,
+    FindRoleByIdController,
+  ],
   providers: [
     RoleRepositoryService,
     CreateRoleService,
@@ -31,6 +37,5 @@ import Role from './entities/Role';
     DeleteRoleService,
     ListRolesService,
   ],
-  controllers: [CreateRoleController, UpdateRoleController, ListRolesController, DeleteRoleController, FindRoleByIdController],
 })
 export class RolesModule {}

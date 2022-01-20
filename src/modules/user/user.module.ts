@@ -13,9 +13,10 @@ import { UpdateUserController } from './controllers/update-user/update-user.cont
 import { DeleteUserController } from './controllers/delete-user/delete-user.controller';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 import { UserRepositoryService } from './repositories/UserRepository';
+import { RolesModule } from '../roles/roles.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User]), RolesModule],
   controllers: [
     CreateUserController,
     ListUsersController,
