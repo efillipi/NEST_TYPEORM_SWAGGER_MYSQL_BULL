@@ -16,6 +16,14 @@ export class UpdateUserService {
       throw new AppError('User not found', 404);
     }
 
+    const userExsists = await this.userRepository.findSomething({
+      email: data.email,
+    });
+
+    if (userExsists && userExsists.id !== this.user.id) {
+      throw new AppError('Email is already being used', 409);
+    }
+
     await this.userRepository.merge(this.user, data);
 
     return await this.userRepository.save(this.user);
