@@ -33,7 +33,9 @@ export class AuthenticationUserService {
       throw new AppError('Authentication Failure', 401);
     }
 
-    const payload = { sub: this.user.id, email: this.user.email };
+    const payload = {
+      sub: this.user.id,
+    };
 
     const token = this.jwtService.sign(payload);
 

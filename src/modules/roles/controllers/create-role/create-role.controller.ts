@@ -1,6 +1,8 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/shared/guards/decorators/roles.decorator';
+import { RolesGuard } from 'src/shared/guards/role.guard';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import ICreateRoleDTO from '../../dtos/ICreateRoleDTO';
 import Role from '../../entities/Role';
@@ -11,7 +13,9 @@ import { CreateRoleService } from '../../services/create-role/create-role.servic
 @UseGuards(AuthGuard('jwt'))
 export class CreateRoleController {
   constructor(private readonly service: CreateRoleService) {}
+
   @Post()
+  // @Roles('ADM')
   @ApiOperation({ summary: 'Create new role' })
   @ApiResponse({
     status: 201,

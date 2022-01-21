@@ -8,6 +8,8 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/shared/guards/decorators/roles.decorator';
+import { RolesGuard } from 'src/shared/guards/role.guard';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
 import IUpdateRoleDTO from '../../dtos/IUpdateRoleDTO';
@@ -21,6 +23,7 @@ export class UpdateRoleController {
   constructor(private readonly service: UpdateRoleService) {}
 
   @Put(':id')
+  // @Roles('ADM')
   @ApiOperation({ summary: 'Update role by id' })
   @ApiResponse({
     status: 200,

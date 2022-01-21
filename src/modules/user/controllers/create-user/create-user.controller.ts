@@ -5,13 +5,17 @@ import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagge
 import User from '../../entities/User';
 import { AuthGuard } from '@nestjs/passport';
 import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
+import { RolesGuard } from 'src/shared/guards/role.guard';
+import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 
 @Controller('users')
 @ApiTags('users')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class CreateUserController {
   constructor(private readonly service: CreateUserService) {}
+
   @Post()
+  @Roles('ADM')
   @ApiOperation({ summary: 'Create new user' })
   @ApiResponse({
     status: 201,

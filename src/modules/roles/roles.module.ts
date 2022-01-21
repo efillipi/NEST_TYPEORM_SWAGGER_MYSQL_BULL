@@ -12,9 +12,10 @@ import { ListRolesController } from './controllers/list-roles/list-roles.control
 import { DeleteRoleController } from './controllers/delete-role/delete-role.controller';
 import { FindRoleByIdController } from './controllers/find-role-by-id/find-role-by-id.controller';
 import Role from './entities/Role';
+import { UserModule } from '../user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Role])],
+  imports: [TypeOrmModule.forFeature([Role]), UserModule],
   controllers: [
     CreateRoleController,
     UpdateRoleController,
@@ -30,12 +31,6 @@ import Role from './entities/Role';
     ListRolesService,
     FindRoleByIdService,
   ],
-  exports: [
-    RoleRepositoryService,
-    CreateRoleService,
-    UpdateRoleService,
-    DeleteRoleService,
-    ListRolesService,
-  ],
+  exports: [RoleRepositoryService],
 })
 export class RolesModule {}
