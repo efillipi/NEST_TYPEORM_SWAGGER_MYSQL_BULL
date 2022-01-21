@@ -18,12 +18,12 @@ import { UpdateRoleService } from '../../services/update-role/update-role.servic
 
 @Controller('roles')
 @ApiTags('roles')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class UpdateRoleController {
   constructor(private readonly service: UpdateRoleService) {}
 
   @Put(':id')
-  // @Roles('ADM')
+  @Roles('ADM')
   @ApiOperation({ summary: 'Update role by id' })
   @ApiResponse({
     status: 200,

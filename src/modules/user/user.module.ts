@@ -14,7 +14,6 @@ import { DeleteUserController } from './controllers/delete-user/delete-user.cont
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 import { UserRepositoryService } from './repositories/UserRepository';
 import { RolesModule } from '../roles/roles.module';
-import { RoleRepositoryService } from '../roles/repositories/RoleRepository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User]), RolesModule],
@@ -33,7 +32,6 @@ import { RoleRepositoryService } from '../roles/repositories/RoleRepository';
     DeleteUserService,
     HashProviderService,
     UserRepositoryService,
-    RoleRepositoryService,
   ],
   exports: [
     CreateUserService,

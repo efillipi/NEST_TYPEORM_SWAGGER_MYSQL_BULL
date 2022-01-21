@@ -10,12 +10,12 @@ import { CreateRoleService } from '../../services/create-role/create-role.servic
 
 @Controller('roles')
 @ApiTags('roles')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class CreateRoleController {
   constructor(private readonly service: CreateRoleService) {}
 
   @Post()
-  // @Roles('ADM')
+  @Roles('ADM')
   @ApiOperation({ summary: 'Create new role' })
   @ApiResponse({
     status: 201,

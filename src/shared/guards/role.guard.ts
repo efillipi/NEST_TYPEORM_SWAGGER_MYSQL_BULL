@@ -5,13 +5,16 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { UserRepositoryService } from 'src/modules/user/repositories/UserRepository';
+import { InjectRepository } from '@nestjs/typeorm';
+import User from 'src/modules/user/entities/User';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
     private reflector: Reflector,
-    private usersService: UserRepositoryService,
   ) {}
 
   canActivate(context: ExecutionContext): Promise<boolean> | boolean {
@@ -26,15 +29,18 @@ export class RolesGuard implements CanActivate {
 
     const { user } = context.switchToHttp().getRequest();
 
-    // if (!user) {
-    //   throw new UnauthorizedException();
-    // }
+    if (!user) {
+      throw new UnauthorizedException();
+    }
 
     return this.matchRoles(user.id, requiredRoles);
   }
 
   private async matchRoles(id: number, roles: string[]) {
-    const user = await this.usersService.findSomething({ id });
+    const user = await this.userRepository.findOne(
+      { id },
+      { relations: ['roles'] },
+    );
 
     const userHasRole = user.roles.some((role) => roles.includes(role.name));
 

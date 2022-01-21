@@ -14,12 +14,12 @@ import { DeleteRoleService } from '../../services/delete-role/delete-role.servic
 
 @Controller('roles')
 @ApiTags('roles')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class DeleteRoleController {
   constructor(private readonly service: DeleteRoleService) {}
 
   @Delete(':id')
-  // @Roles('ADM')
+  @Roles('ADM')
   @ApiOperation({ summary: 'Delete role by id' })
   @ApiResponse({ status: 204, description: 'Delete role success' })
   @ApiResponse({

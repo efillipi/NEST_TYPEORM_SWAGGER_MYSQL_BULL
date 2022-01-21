@@ -13,7 +13,7 @@ export class ListRolesController {
   constructor(private readonly service: ListRolesService) {}
 
   @Get()
-  // @Roles('ADM')
+  @Roles('ADM')
   @ApiOperation({ summary: 'List roles' })
   @ApiResponse({
     status: 200,

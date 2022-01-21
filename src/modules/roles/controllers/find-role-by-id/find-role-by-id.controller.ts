@@ -15,12 +15,12 @@ import { FindRoleByIdService } from '../../services/find-role-by-id/find-role-by
 
 @Controller('roles')
 @ApiTags('roles')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class FindRoleByIdController {
   constructor(private readonly service: FindRoleByIdService) {}
 
   @Get(':id')
-  // @Roles('ADM')
+  @Roles('ADM')
   @ApiOperation({ summary: 'Find role by id' })
   @ApiResponse({
     status: 200,

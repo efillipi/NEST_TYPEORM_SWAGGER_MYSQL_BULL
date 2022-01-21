@@ -16,7 +16,7 @@ import { RolesModule } from './modules/roles/roles.module';
     }),
     UserModule,
     AuthenticationUserModule,
-    // RolesModule,
+    RolesModule,
   ],
   providers: [HashProviderService],
 })
