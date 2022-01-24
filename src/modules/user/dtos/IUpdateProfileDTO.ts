@@ -11,4 +11,9 @@ export default class IUpdateProfileDTO {
   @ApiProperty()
   @IsOptional()
   email?: string;
+
+  @IsString()
+  @ApiProperty()
+  @IsOptional()
+  password?: string;
 }

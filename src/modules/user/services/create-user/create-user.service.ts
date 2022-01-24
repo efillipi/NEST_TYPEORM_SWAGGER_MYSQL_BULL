@@ -5,15 +5,9 @@ import {
 } from '@nestjs/common';
 import { RoleRepositoryService } from 'src/modules/roles/repositories/RoleRepository';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
+import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 import User from '../../entities/User';
 import { UserRepositoryService } from '../../repositories/UserRepository';
-
-interface IRequest {
-  name: string;
-  email: string;
-  password: string;
-  roles: string[];
-}
 
 @Injectable()
 export class CreateUserService {
@@ -21,10 +15,9 @@ export class CreateUserService {
   constructor(
     private readonly userRepository: UserRepositoryService,
     private readonly roleRepository: RoleRepositoryService,
-
     private hashProviderService: HashProviderService,
   ) {}
-  async execute(data: IRequest): Promise<User> {
+  async execute(data: IRequestCreateUserDTO): Promise<User> {
     const userExsists = await this.userRepository.findSomething({
       email: data.email,
     });
