@@ -1,9 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import IRequestAuthenticationUserDTO from 'src/modules/user/dtos/IRequestAuthenticationUserDTO';
 import User from 'src/modules/user/entities/User';
 import { UserRepositoryService } from 'src/modules/user/repositories/UserRepository';
-import AppError from 'src/shared/errors/AppError';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 
 @Injectable()
@@ -21,7 +20,7 @@ export class AuthenticationUserService {
     });
 
     if (!this.user) {
-      throw new AppError('Authentication Failure', 401);
+      throw new UnauthorizedException('Authentication Failure');
     }
 
     const matchPassword = await this.hashProviderService.compareHash(
@@ -30,7 +29,7 @@ export class AuthenticationUserService {
     );
 
     if (!matchPassword) {
-      throw new AppError('Authentication Failure', 401);
+      throw new UnauthorizedException('Authentication Failure');
     }
 
     const payload = {

@@ -1,5 +1,4 @@
-import { Injectable } from '@nestjs/common';
-import AppError from 'src/shared/errors/AppError';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import User from '../../entities/User';
 import { UserRepositoryService } from '../../repositories/UserRepository';
 
@@ -11,7 +10,7 @@ export class FindUserByidService {
     this.user = await this.userRepository.findSomething({ id });
 
     if (!this.user) {
-      throw new AppError('User not found', 404);
+      throw new NotFoundException('User not found');
     }
 
     return this.user;

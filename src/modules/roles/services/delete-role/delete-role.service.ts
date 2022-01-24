@@ -1,5 +1,4 @@
-import { Injectable } from '@nestjs/common';
-import AppError from 'src/shared/errors/AppError';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import Role from '../../entities/Role';
 import { RoleRepositoryService } from '../../repositories/RoleRepository';
 
@@ -12,7 +11,7 @@ export class DeleteRoleService {
     this.role = await this.roleRepository.findSomething({ id });
 
     if (!this.role) {
-      throw new AppError('Role not found', 404);
+      throw new NotFoundException('Role not found');
     }
 
     await this.roleRepository.delete(id);

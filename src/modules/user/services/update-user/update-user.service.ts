@@ -1,5 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import AppError from 'src/shared/errors/AppError';
+import {
+  Injectable,
+  BadRequestException,
+  ConflictException,
+} from '@nestjs/common';
 import IUpdateUserDTO from '../../dtos/IUpdateUserDTO';
 import User from '../../entities/User';
 import { UserRepositoryService } from '../../repositories/UserRepository';
@@ -13,7 +16,7 @@ export class UpdateUserService {
     this.user = await this.userRepository.findSomething({ id });
 
     if (!this.user) {
-      throw new AppError('User not found', 404);
+      throw new BadRequestException('User not found');
     }
 
     const userExsists = await this.userRepository.findSomething({
@@ -21,7 +24,7 @@ export class UpdateUserService {
     });
 
     if (userExsists && userExsists.id !== this.user.id) {
-      throw new AppError('Email is already being used', 409);
+      throw new ConflictException('Email is already being used');
     }
 
     await this.userRepository.merge(this.user, data);

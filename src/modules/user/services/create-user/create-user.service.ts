@@ -1,6 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 import { RoleRepositoryService } from 'src/modules/roles/repositories/RoleRepository';
-import AppError from 'src/shared/errors/AppError';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 import User from '../../entities/User';
 import { UserRepositoryService } from '../../repositories/UserRepository';
@@ -27,13 +30,13 @@ export class CreateUserService {
     });
 
     if (userExsists) {
-      throw new AppError('Email is already being used', 409);
+      throw new ConflictException('Email is already being used');
     }
 
     const rolesExists = await this.roleRepository.findByNames(data.roles);
 
     if (rolesExists.length !== data.roles.length) {
-      throw new AppError('Role or Roles not found', 404);
+      throw new NotFoundException('Role or Roles not found');
     }
 
     const hash = await this.hashProviderService.generateHash(data.password);

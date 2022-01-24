@@ -1,5 +1,4 @@
-import { Injectable } from '@nestjs/common';
-import AppError from 'src/shared/errors/AppError';
+import { Injectable, ConflictException } from '@nestjs/common';
 import ICreateRoleDTO from '../../dtos/ICreateRoleDTO';
 import Role from '../../entities/Role';
 import { RoleRepositoryService } from '../../repositories/RoleRepository';
@@ -13,7 +12,7 @@ export class CreateRoleService {
     this.role = await this.roleRepository.findSomething({ name: data.name });
 
     if (this.role) {
-      throw new AppError('Role already registered', 409);
+      throw new ConflictException('Role already registered');
     }
 
     return await this.roleRepository.create(data);

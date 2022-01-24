@@ -1,5 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import AppError from 'src/shared/errors/AppError';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import IUpdateRoleDTO from '../../dtos/IUpdateRoleDTO';
 import Role from '../../entities/Role';
 import { RoleRepositoryService } from '../../repositories/RoleRepository';
@@ -13,7 +16,7 @@ export class UpdateRoleService {
     this.role = await this.roleRepository.findSomething({ id });
 
     if (!this.role) {
-      throw new AppError('Role not found', 404);
+      throw new NotFoundException('Role not found');
     }
 
     const roleExists = await this.roleRepository.findSomething({
@@ -21,7 +24,7 @@ export class UpdateRoleService {
     });
 
     if (roleExists && roleExists.id !== this.role.id) {
-      throw new AppError('Role already registered', 409);
+      throw new ConflictException('Role already registered');
     }
 
     await this.roleRepository.merge(this.role, data);
