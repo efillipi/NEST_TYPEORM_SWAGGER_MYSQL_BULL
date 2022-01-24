@@ -17,6 +17,10 @@ import { RolesModule } from '../roles/roles.module';
 import { UpdateAvatarService } from './services/update-avatar/update-avatar.service';
 import { DiskStorageProviderService } from 'src/shared/providers/disk-storage-provider/disk-storage-provider.service';
 import { UpdateAvatarController } from './controllers/update-avatar/update-avatar.controller';
+import { ShowProfileController } from './controllers/show-profile/show-profile.controller';
+import { ShowProfileService } from './services/show-profile/show-profile.service';
+import { UpdateProfileService } from './services/update-profile/update-profile.service';
+import { UpdateProfileController } from './controllers/update-profile/update-profile.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User]), RolesModule],
@@ -27,6 +31,8 @@ import { UpdateAvatarController } from './controllers/update-avatar/update-avata
     UpdateUserController,
     DeleteUserController,
     UpdateAvatarController,
+    ShowProfileController,
+    UpdateProfileController,
   ],
   providers: [
     CreateUserService,
@@ -38,6 +44,8 @@ import { UpdateAvatarController } from './controllers/update-avatar/update-avata
     UserRepositoryService,
     UpdateAvatarService,
     DiskStorageProviderService,
+    ShowProfileService,
+    UpdateProfileService,
   ],
   exports: [UserRepositoryService],
 })
