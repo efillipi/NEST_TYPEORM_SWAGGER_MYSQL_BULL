@@ -5,6 +5,7 @@ import { UserModule } from './modules/user/user.module';
 import { HashProviderService } from './shared/providers/hash-provider/hash-provider.service';
 import { AuthenticationUserModule } from './modules/authentication-user/authentication-user.module';
 import { RolesModule } from './modules/roles/roles.module';
+import { DiskStorageProviderService } from './shared/providers/disk-storage-provider/disk-storage-provider.service';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { RolesModule } from './modules/roles/roles.module';
     AuthenticationUserModule,
     RolesModule,
   ],
-  providers: [HashProviderService],
+  providers: [HashProviderService, DiskStorageProviderService],
 })
 export class AppModule {}

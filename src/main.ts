@@ -3,6 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import * as express from 'express';
+import uploadConfig from './shared/config/upload';
 
 const API_PORT = process.env.API_PORT;
 
@@ -21,6 +23,8 @@ async function server() {
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
+
+  app.use('/files', express.static(uploadConfig.uploadsFolder));
 
   await app.listen(API_PORT);
 }

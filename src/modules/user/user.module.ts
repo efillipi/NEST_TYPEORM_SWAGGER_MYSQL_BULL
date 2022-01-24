@@ -14,6 +14,9 @@ import { DeleteUserController } from './controllers/delete-user/delete-user.cont
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 import { UserRepositoryService } from './repositories/UserRepository';
 import { RolesModule } from '../roles/roles.module';
+import { UpdateAvatarService } from './services/update-avatar/update-avatar.service';
+import { DiskStorageProviderService } from 'src/shared/providers/disk-storage-provider/disk-storage-provider.service';
+import { UpdateAvatarController } from './controllers/update-avatar/update-avatar.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User]), RolesModule],
@@ -23,6 +26,7 @@ import { RolesModule } from '../roles/roles.module';
     FindUserByIdController,
     UpdateUserController,
     DeleteUserController,
+    UpdateAvatarController,
   ],
   providers: [
     CreateUserService,
@@ -32,6 +36,8 @@ import { RolesModule } from '../roles/roles.module';
     DeleteUserService,
     HashProviderService,
     UserRepositoryService,
+    UpdateAvatarService,
+    DiskStorageProviderService,
   ],
   exports: [UserRepositoryService],
 })
