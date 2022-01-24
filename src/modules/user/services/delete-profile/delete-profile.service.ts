@@ -7,7 +7,7 @@ import User from '../../entities/User';
 import { UserRepositoryService } from '../../repositories/UserRepository';
 
 @Injectable()
-export class DeleteUserService {
+export class DeleteProfileService {
   private user: User;
   constructor(private readonly userRepository: UserRepositoryService) {}
   async execute(id: number): Promise<void> {

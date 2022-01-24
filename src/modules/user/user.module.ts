@@ -21,6 +21,8 @@ import { ShowProfileController } from './controllers/show-profile/show-profile.c
 import { ShowProfileService } from './services/show-profile/show-profile.service';
 import { UpdateProfileService } from './services/update-profile/update-profile.service';
 import { UpdateProfileController } from './controllers/update-profile/update-profile.controller';
+import { DeleteProfileController } from './controllers/delete-profile/delete-profile.controller';
+import { DeleteProfileService } from './services/delete-profile/delete-profile.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User]), RolesModule],
@@ -33,6 +35,7 @@ import { UpdateProfileController } from './controllers/update-profile/update-pro
     UpdateAvatarController,
     ShowProfileController,
     UpdateProfileController,
+    DeleteProfileController,
   ],
   providers: [
     CreateUserService,
@@ -46,6 +49,7 @@ import { UpdateProfileController } from './controllers/update-profile/update-pro
     DiskStorageProviderService,
     ShowProfileService,
     UpdateProfileService,
+    DeleteProfileService,
   ],
   exports: [UserRepositoryService],
 })
