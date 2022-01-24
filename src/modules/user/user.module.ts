@@ -33,13 +33,6 @@ import { RolesModule } from '../roles/roles.module';
     HashProviderService,
     UserRepositoryService,
   ],
-  exports: [
-    CreateUserService,
-    ListUsersService,
-    FindUserByidService,
-    UpdateUserService,
-    DeleteUserService,
-    UserRepositoryService,
-  ],
+  exports: [UserRepositoryService],
 })
 export class UserModule {}

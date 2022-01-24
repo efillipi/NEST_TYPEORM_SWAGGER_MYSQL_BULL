@@ -31,13 +31,6 @@ import User from '../user/entities/User';
     ListRolesService,
     FindRoleByIdService,
   ],
-  exports: [
-    RoleRepositoryService,
-    CreateRoleService,
-    UpdateRoleService,
-    DeleteRoleService,
-    ListRolesService,
-    FindRoleByIdService,
-  ],
+  exports: [RoleRepositoryService],
 })
 export class RolesModule {}
