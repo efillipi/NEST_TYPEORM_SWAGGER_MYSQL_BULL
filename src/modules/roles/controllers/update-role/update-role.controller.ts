@@ -11,7 +11,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 import { RolesGuard } from 'src/shared/guards/role.guard';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
-import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
+import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
 import IUpdateRoleDTO from '../../dtos/IUpdateRoleDTO';
 import Role from '../../entities/Role';
 import { UpdateRoleService } from '../../services/update-role/update-role.service';
@@ -33,7 +33,7 @@ export class UpdateRoleController {
   @ApiResponse({
     status: 404,
     description: 'Role not found',
-    type: NotFoundSwagger,
+    type: ErrorRequestSwagger,
   })
   @ApiResponse({
     status: 400,
@@ -41,9 +41,14 @@ export class UpdateRoleController {
     type: BadRequestSwagger,
   })
   @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
+  })
+  @ApiResponse({
     status: 409,
     description: 'Role already registered',
-    type: BadRequestSwagger,
+    type: ErrorRequestSwagger,
   })
   async update(
     @Param('id', new ParseIntPipe()) id: number,

@@ -9,7 +9,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 import { RolesGuard } from 'src/shared/guards/role.guard';
-import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
+import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
 import User from '../../entities/User';
 import { FindUserByidService } from '../../services/find-user-byid/find-user-byid.service';
 
@@ -30,7 +30,12 @@ export class FindUserByIdController {
   @ApiResponse({
     status: 404,
     description: 'User not found',
-    type: NotFoundSwagger,
+    type: ErrorRequestSwagger,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
   })
   async show(@Param('id', new ParseIntPipe()) id: number) {
     return await this.service.execute(id);

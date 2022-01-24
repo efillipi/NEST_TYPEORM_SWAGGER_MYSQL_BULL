@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 import { RolesGuard } from 'src/shared/guards/role.guard';
+import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
 import Role from '../../entities/Role';
 import { ListRolesService } from '../../services/list-roles/list-roles.service';
 
@@ -20,6 +21,11 @@ export class ListRolesController {
     description: 'List roles success',
     type: Role,
     isArray: true,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
   })
   async delete() {
     return await this.service.execute();

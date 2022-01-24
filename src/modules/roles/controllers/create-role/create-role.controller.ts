@@ -4,6 +4,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 import { RolesGuard } from 'src/shared/guards/role.guard';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
+import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
 import ICreateRoleDTO from '../../dtos/ICreateRoleDTO';
 import Role from '../../entities/Role';
 import { CreateRoleService } from '../../services/create-role/create-role.service';
@@ -28,9 +29,14 @@ export class CreateRoleController {
     type: BadRequestSwagger,
   })
   @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
+  })
+  @ApiResponse({
     status: 409,
     description: 'Role already registered',
-    type: BadRequestSwagger,
+    type: ErrorRequestSwagger,
   })
   async create(@Body() body: ICreateRoleDTO) {
     return await this.service.execute(body);

@@ -40,6 +40,11 @@ export class UpdateAvatarController {
     description: 'Only authentic users can change avatars',
     type: ErrorRequestSwagger,
   })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
+  })
   @UseInterceptors(FileInterceptor('avatar', uploadConfig))
   async updateAvatar(
     @Req() req: Express.Request,

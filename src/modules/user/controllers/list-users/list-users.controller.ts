@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 import { RolesGuard } from 'src/shared/guards/role.guard';
+import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
 import User from '../../entities/User';
 import { ListUsersService } from '../../services/list-users/list-users.service';
 
@@ -21,6 +22,11 @@ export class ListUsersController {
     description: 'List users success',
     type: User,
     isArray: true,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
   })
   async find() {
     return await this.service.execute();

@@ -7,6 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 import { RolesGuard } from 'src/shared/guards/role.guard';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
+import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
 
 @Controller('users')
 @ApiTags('users')
@@ -28,14 +29,19 @@ export class CreateUserController {
     type: BadRequestSwagger,
   })
   @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
+  })
+  @ApiResponse({
     status: 409,
     description: 'Email is already being used',
-    type: BadRequestSwagger,
+    type: ErrorRequestSwagger,
   })
   @ApiResponse({
     status: 404,
     description: 'Role or Roles not found',
-    type: BadRequestSwagger,
+    type: ErrorRequestSwagger,
   })
   async create(@Body() body: IRequestCreateUserDTO) {
     return await this.service.execute(body);

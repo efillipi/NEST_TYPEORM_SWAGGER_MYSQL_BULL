@@ -9,7 +9,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 import { RolesGuard } from 'src/shared/guards/role.guard';
-import { NotFoundSwagger } from 'src/shared/helpers/swagger/not-found.swagger';
+import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
 import { DeleteRoleService } from '../../services/delete-role/delete-role.service';
 
 @Controller('roles')
@@ -25,7 +25,12 @@ export class DeleteRoleController {
   @ApiResponse({
     status: 404,
     description: 'Role not found',
-    type: NotFoundSwagger,
+    type: ErrorRequestSwagger,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: ErrorRequestSwagger,
   })
   async delete(@Param('id', new ParseIntPipe()) id: number) {
     return await this.service.execute(id);
