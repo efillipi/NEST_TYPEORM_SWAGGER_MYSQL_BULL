@@ -1,0 +1,544 @@
+_type: export
+__export_format: 4
+__export_date: 2022-01-25T21:14:22.715Z
+__export_source: insomnia.desktop.app:v2021.7.2
+resources:
+  - _id: req_2f180a8f2fcf4abfa99b82d0ab38a0da
+    parentId: fld_4e0fb1f17a2847e4ba8d36a95760828c
+    modified: 1643053742061
+    created: 1643032664918
+    url: "{{ _.base_url }}swagger"
+    name: DOC
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642432604640
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_4e0fb1f17a2847e4ba8d36a95760828c
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1643032668517
+    created: 1643032664911
+    name: Docs
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642516861555.5
+    _type: request_group
+  - _id: wrk_1252a201976c4807a7d86fbf647a9072
+    parentId: null
+    modified: 1642430707932
+    created: 1642430707932
+    name: Api-typeorm-cursos
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_f690fc0358d34dbb9e0d1cec9f90d9e4
+    parentId: fld_ccffb9d33f64450cbba85cf5402d465a
+    modified: 1643032721285
+    created: 1642620275877
+    url: "{{ _.base_url }}roles"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"TESTE",
+        	"description":"TESTE"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e39cf987a78645b78294f44a1ddaf162
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1642432604690
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_ccffb9d33f64450cbba85cf5402d465a
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1642620868066
+    created: 1642620275828
+    name: Roles
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642516861505.5
+    _type: request_group
+  - _id: req_b450ee7ed8824541ad3da422ff50736a
+    parentId: fld_ccffb9d33f64450cbba85cf5402d465a
+    modified: 1643032711459
+    created: 1642620275841
+    url: "{{ _.base_url }}roles"
+    name: Find
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642432604640
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_393807add60741c5a78c02aff49d118d
+    parentId: fld_ccffb9d33f64450cbba85cf5402d465a
+    modified: 1643032718386
+    created: 1642620275900
+    url: "{{ _.base_url }}roles/4"
+    name: Byi id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }} "
+    metaSortKey: -1642432604633.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_61e118119c214548b4c1cb8c91be06b8
+    parentId: fld_ccffb9d33f64450cbba85cf5402d465a
+    modified: 1642802410769
+    created: 1642620275913
+    url: "{{ _.base_url }}roles/1"
+    name: update
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"name":"ADM"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_67cbe0b961cb427ebd39882ddbc84523
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1642432604627.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9665d417cdcc4773aa65b593340d6ef9
+    parentId: fld_ccffb9d33f64450cbba85cf5402d465a
+    modified: 1642802412848
+    created: 1642620275908
+    url: "{{ _.base_url }}roles/5"
+    name: delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642432604621.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_76c15b2e3d4f4f618e6f1fa99c0f5071
+    parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
+    modified: 1643048932282
+    created: 1643036377328
+    url: "{{ _.base_url }}users/avatar"
+    name: Update Avatar
+    description: ""
+    method: PATCH
+    body:
+      mimeType: multipart/form-data
+      params:
+        - id: pair_9c136a2b40834da5909d5f9ddafe8a70
+          name: avatar
+          value: ""
+          description: ""
+          type: file
+          fileName: /Users/edneyfillipi/Pictures/rocket.png
+          disabled: false
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+        id: pair_6ff84f61c45f4d878cf8418f921d892b
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1642734478132.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_1a77fe87c61c49599a1c5e02bfe828f8
+    parentId: fld_030dd1ec1e544565a261e5f50461824e
+    modified: 1643036351575
+    created: 1643036351575
+    name: Profile
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1643036351575
+    _type: request_group
+  - _id: fld_030dd1ec1e544565a261e5f50461824e
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1642516854408
+    created: 1642516854408
+    name: User
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642516854408
+    _type: request_group
+  - _id: req_56917abb79ed486d8ffcc7b9ddcad2e1
+    parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
+    modified: 1643053586133
+    created: 1643050364123
+    url: "{{ _.base_url }}profile/user"
+    name: Update Profile
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        "name": "ADM",
+        		"email": "adm@adm.com",
+        			"password": "102030"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_67cbe0b961cb427ebd39882ddbc84523
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642659009771.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2be226a3829e4be8a656fd7e53bf7ced
+    parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
+    modified: 1643054762063
+    created: 1643047672238
+    url: "{{ _.base_url }}profile/user"
+    name: Show Profile
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1642583541411.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_68e7c8162c5241d8b8623d1e3336bdfc
+    parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
+    modified: 1643054930497
+    created: 1643054750583
+    url: "{{ _.base_url }}profile/user"
+    name: Delete Profile
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642583541361.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4f5ec41b09934337857265b5d213f652
+    parentId: fld_030dd1ec1e544565a261e5f50461824e
+    modified: 1643052807447
+    created: 1642432604690
+    url: "{{ _.base_url }}users"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"{% now 'unix', '' %}",
+        	"email":"{% now 'millis', '' %}@gmail.com",
+        	"password":"102030",
+        	"roles":["USER"]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e39cf987a78645b78294f44a1ddaf162
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642432604690
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_75a7cb47f334434e84788d9b78436128
+    parentId: fld_030dd1ec1e544565a261e5f50461824e
+    modified: 1643054838785
+    created: 1642430714828
+    url: "{{ _.base_url }}users"
+    name: Find
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1642432604640
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4898920a5b764691b2a3464069ec930e
+    parentId: fld_030dd1ec1e544565a261e5f50461824e
+    modified: 1643054837790
+    created: 1642434012602
+    url: "{{ _.base_url }}users/5"
+    name: Byi id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }} "
+    metaSortKey: -1642432604633.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_00cbbc1d641f4e5b93394dc015a4fa88
+    parentId: fld_030dd1ec1e544565a261e5f50461824e
+    modified: 1643053499087
+    created: 1642434454944
+    url: "{{ _.base_url }}users/1"
+    name: update
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"password": "102030"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_67cbe0b961cb427ebd39882ddbc84523
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642432604627.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_50614967ee8246d38f4a87d644049502
+    parentId: fld_030dd1ec1e544565a261e5f50461824e
+    modified: 1643054738587
+    created: 1642434051361
+    url: "{{ _.base_url }}users/27"
+    name: delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642432604621.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_019742eb4dd646fc8bb073cc70a5b6d2
+    parentId: fld_f9092150623847cc9b3377c208a0fc08
+    modified: 1643145226281
+    created: 1642516877878
+    url: "{{ _.base_url }}sessions"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        "email":"adm@adm.com",
+        	"password": "102030"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e39cf987a78645b78294f44a1ddaf162
+    authentication: {}
+    metaSortKey: -1642432604665
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f9092150623847cc9b3377c208a0fc08
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1642620875208
+    created: 1642516868603
+    name: Sessions
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642516854358
+    _type: request_group
+  - _id: env_f8010d21cb9d06bda7edcfb9e0633d6f4c2fdb72
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1642430730996
+    created: 1642430707968
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: {}
+    color: null
+    isPrivate: false
+    metaSortKey: 1642430707968
+    _type: environment
+  - _id: jar_f8010d21cb9d06bda7edcfb9e0633d6f4c2fdb72
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1642430707972
+    created: 1642430707972
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_d76ad214493c46a38d0c28b10a3ec489
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1642430707940
+    created: 1642430707940
+    fileName: Api-typeorm-cursos
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_bf40da8707da498fb88f01fb8a3958ae
+    parentId: env_f8010d21cb9d06bda7edcfb9e0633d6f4c2fdb72
+    modified: 1642536624577
+    created: 1642430733311
+    name: "3333"
+    data:
+      base_url: http://localhost:3333/
+      token: "{% response 'body', 'req_019742eb4dd646fc8bb073cc70a5b6d2',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+    dataPropertyOrder:
+      "&":
+        - base_url
+        - token
+    color: null
+    isPrivate: false
+    metaSortKey: 1642430733311
+    _type: environment
