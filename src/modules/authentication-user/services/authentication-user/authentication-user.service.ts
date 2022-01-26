@@ -14,7 +14,7 @@ export class AuthenticationUserService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(data: IRequestAuthenticationUserDTO) {
+  async execute(data: IRequestAuthenticationUserDTO) {
     this.user = await this.userRepository.findSomething({
       email: data.email,
     });

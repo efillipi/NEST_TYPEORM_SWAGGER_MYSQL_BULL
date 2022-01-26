@@ -27,12 +27,10 @@ class User {
 
   @Column()
   @Exclude()
-  @ApiProperty()
   password: string;
 
   @Column({ nullable: true })
   @Exclude()
-  @ApiProperty()
   avatar: string;
 
   @CreateDateColumn({ name: 'created_at' })
@@ -43,6 +41,7 @@ class User {
   @ApiProperty()
   updatedAt: string;
 
+  @ApiProperty()
   @Expose({ name: 'avatar_url' })
   getAvatarUrl(): string | null {
     if (!this.avatar) {

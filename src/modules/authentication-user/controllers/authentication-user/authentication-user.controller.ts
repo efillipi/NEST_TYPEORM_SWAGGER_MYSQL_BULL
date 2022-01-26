@@ -38,6 +38,6 @@ export class AuthenticationUserController {
   })
   @UseInterceptors(ClassSerializerInterceptor)
   async execute(@Body() body: IRequestAuthenticationUserDTO) {
-    return await this.authenticationUserService.validateUser(body);
+    return await this.authenticationUserService.execute(body);
   }
 }
