@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Post,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
@@ -38,7 +45,8 @@ export class CreateRoleController {
     description: 'Role already registered',
     type: ErrorRequestSwagger,
   })
-  async create(@Body() body: ICreateRoleDTO) {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute(@Body() body: ICreateRoleDTO) {
     return await this.service.execute(body);
   }
 }

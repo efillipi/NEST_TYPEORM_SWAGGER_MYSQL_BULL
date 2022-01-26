@@ -1,4 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Post,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
@@ -30,7 +36,8 @@ export class AuthenticationUserController {
     description: 'Authentication Failure',
     type: ErrorRequestSwagger,
   })
-  async login(@Body() body: IRequestAuthenticationUserDTO) {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute(@Body() body: IRequestAuthenticationUserDTO) {
     return await this.authenticationUserService.validateUser(body);
   }
 }

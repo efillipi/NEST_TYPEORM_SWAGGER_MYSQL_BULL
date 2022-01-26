@@ -1,4 +1,11 @@
-import { Controller, Delete, Req, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  HttpCode,
+  HttpStatus,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
@@ -26,7 +33,8 @@ export class DeleteProfileController {
     description: 'Unauthorized',
     type: ErrorRequestSwagger,
   })
-  async update(@Req() req: Express.Request) {
-    return await this.service.execute(req.user.id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async execute(@Req() req: Express.Request) {
+    await this.service.execute(req.user.id);
   }
 }

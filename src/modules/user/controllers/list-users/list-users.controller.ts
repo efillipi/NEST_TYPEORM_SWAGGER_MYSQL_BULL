@@ -1,4 +1,10 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
@@ -9,7 +15,6 @@ import { ListUsersService } from '../../services/list-users/list-users.service';
 
 @Controller('users')
 @ApiTags('users')
-// token, permissao
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 export class ListUsersController {
   constructor(private readonly service: ListUsersService) {}
@@ -28,7 +33,8 @@ export class ListUsersController {
     description: 'Unauthorized',
     type: ErrorRequestSwagger,
   })
-  async find() {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute() {
     return await this.service.execute();
   }
 }

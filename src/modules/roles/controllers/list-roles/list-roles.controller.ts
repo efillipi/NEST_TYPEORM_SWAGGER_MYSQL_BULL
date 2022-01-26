@@ -1,4 +1,10 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
@@ -27,7 +33,8 @@ export class ListRolesController {
     description: 'Unauthorized',
     type: ErrorRequestSwagger,
   })
-  async delete() {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute() {
     return await this.service.execute();
   }
 }

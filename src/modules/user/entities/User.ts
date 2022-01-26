@@ -45,7 +45,17 @@ class User {
 
   @Expose({ name: 'avatar_url' })
   getAvatarUrl(): string | null {
-    return `${process.env.APP_API_URL}/files/${this.avatar}`;
+    if (!this.avatar) {
+      return `${process.env.APP_API_URL}/tmp/avatar.jpg`;
+    }
+
+    switch (process.env.STORAGE_DRIVER) {
+      case 'disk':
+        return `${process.env.APP_API_URL}/files/${this.avatar}`;
+
+      default:
+        return null;
+    }
   }
 
   @ManyToMany(() => Role)

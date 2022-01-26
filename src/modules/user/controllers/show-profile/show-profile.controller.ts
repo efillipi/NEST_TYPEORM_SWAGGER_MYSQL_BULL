@@ -1,4 +1,11 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  Req,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
@@ -31,7 +38,8 @@ export class ShowProfileController {
     description: 'Unauthorized',
     type: ErrorRequestSwagger,
   })
-  async show(@Req() req: Express.Request) {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute(@Req() req: Express.Request) {
     return await this.service.execute({
       userId: req.user.id,
     });

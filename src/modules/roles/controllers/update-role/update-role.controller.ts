@@ -1,10 +1,12 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Param,
   ParseIntPipe,
   Put,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -50,7 +52,8 @@ export class UpdateRoleController {
     description: 'Role already registered',
     type: ErrorRequestSwagger,
   })
-  async update(
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute(
     @Param('id', new ParseIntPipe()) id: number,
     @Body() body: IUpdateRoleDTO,
   ) {

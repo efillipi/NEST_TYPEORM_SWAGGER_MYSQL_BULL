@@ -1,9 +1,11 @@
 import {
+  ClassSerializerInterceptor,
   Controller,
   Get,
   Param,
   ParseIntPipe,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -37,7 +39,8 @@ export class FindRoleByIdController {
     description: 'Unauthorized',
     type: ErrorRequestSwagger,
   })
-  async delete(@Param('id', new ParseIntPipe()) id: number) {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute(@Param('id', new ParseIntPipe()) id: number) {
     return await this.service.execute(id);
   }
 }

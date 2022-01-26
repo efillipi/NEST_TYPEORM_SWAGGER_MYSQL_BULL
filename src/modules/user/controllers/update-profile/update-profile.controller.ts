@@ -1,4 +1,12 @@
-import { Body, Controller, Put, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Put,
+  Req,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
@@ -43,7 +51,8 @@ export class UpdateProfileController {
     description: 'Email is already being used',
     type: ErrorRequestSwagger,
   })
-  async update(@Req() req: Express.Request, @Body() body: IUpdateProfileDTO) {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute(@Req() req: Express.Request, @Body() body: IUpdateProfileDTO) {
     return await this.service.execute(req.user.id, body);
   }
 }

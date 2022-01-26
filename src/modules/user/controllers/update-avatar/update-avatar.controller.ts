@@ -1,4 +1,5 @@
 import {
+  ClassSerializerInterceptor,
   Controller,
   Patch,
   Req,
@@ -45,7 +46,10 @@ export class UpdateAvatarController {
     description: 'Unauthorized',
     type: ErrorRequestSwagger,
   })
-  @UseInterceptors(FileInterceptor('avatar', uploadConfig))
+  @UseInterceptors(
+    ClassSerializerInterceptor,
+    FileInterceptor('avatar', uploadConfig),
+  )
   async updateAvatar(
     @Req() req: Express.Request,
     @UploadedFile() avatar: Express.Multer.File,

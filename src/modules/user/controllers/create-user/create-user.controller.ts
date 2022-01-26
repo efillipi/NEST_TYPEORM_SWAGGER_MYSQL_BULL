@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Post,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { CreateUserService } from '../../services/create-user/create-user.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
@@ -43,7 +50,8 @@ export class CreateUserController {
     description: 'Role or Roles not found',
     type: ErrorRequestSwagger,
   })
-  async create(@Body() body: IRequestCreateUserDTO) {
+  @UseInterceptors(ClassSerializerInterceptor)
+  async execute(@Body() body: IRequestCreateUserDTO) {
     return await this.service.execute(body);
   }
 }

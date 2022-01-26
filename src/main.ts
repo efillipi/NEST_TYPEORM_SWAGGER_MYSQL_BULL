@@ -25,6 +25,7 @@ async function server() {
   );
 
   app.use('/files', express.static(uploadConfig.uploadsFolder));
+  app.use('/tmp', express.static(uploadConfig.tmpFolder));
 
   await app.listen(API_PORT);
 }

@@ -1,6 +1,8 @@
 import {
   Controller,
   Delete,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseIntPipe,
   UseGuards,
@@ -32,7 +34,8 @@ export class DeleteUserController {
     description: 'Unauthorized',
     type: ErrorRequestSwagger,
   })
-  async delete(@Param('id', new ParseIntPipe()) id: number) {
-    return await this.service.execute(id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async execute(@Param('id', new ParseIntPipe()) id: number) {
+    await this.service.execute(id);
   }
 }
