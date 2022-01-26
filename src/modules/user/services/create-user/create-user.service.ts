@@ -9,6 +9,8 @@ import { HashProviderService } from 'src/shared/providers/hash-provider/hash-pro
 import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 import User from '../../entities/User';
 import { UserRepositoryService } from '../../repositories/UserRepository';
+import typeTokenConfig from 'src/config/typeToken';
+const { VALIDATE_CONTA_SERVICE } = typeTokenConfig;
 
 @Injectable()
 export class CreateUserService {
@@ -45,7 +47,7 @@ export class CreateUserService {
 
     await this.userTokenRepository.generate({
       id_user: this.user.id,
-      type: 'ValidateContaService',
+      type: VALIDATE_CONTA_SERVICE,
     });
 
     return this.user;

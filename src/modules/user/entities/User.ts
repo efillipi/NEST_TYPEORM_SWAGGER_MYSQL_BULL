@@ -32,6 +32,10 @@ class User {
   @Exclude()
   password: string;
 
+  @Column()
+  @ApiProperty({ default: false })
+  active: boolean;
+
   @Column({ nullable: true })
   @Exclude()
   avatar: string;

@@ -24,6 +24,7 @@ import { UpdateProfileController } from './controllers/update-profile/update-pro
 import { DeleteProfileController } from './controllers/delete-profile/delete-profile.controller';
 import { DeleteProfileService } from './services/delete-profile/delete-profile.service';
 import { UserTokenModule } from '../user-token/user-token.module';
+import { ValidateAcountService } from './services/validate-acount/validate-acount.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User]), RolesModule, UserTokenModule],
@@ -51,6 +52,7 @@ import { UserTokenModule } from '../user-token/user-token.module';
     ShowProfileService,
     UpdateProfileService,
     DeleteProfileService,
+    ValidateAcountService,
   ],
   exports: [UserRepositoryService],
 })
