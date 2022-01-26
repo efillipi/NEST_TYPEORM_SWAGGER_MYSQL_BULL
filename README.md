@@ -20,4 +20,4 @@
   7.1. You can import `Insomnia file` - `Insomnia.yaml`.<br />
 8. Log in to `http://localhost:3333/swagger` view the API documentation .<br />
 
-<h3 align="center">Desenvolvido por  Edney Fillipi </h3>
+<h3 align="center">Developed by Edney Fillipi</h3>
