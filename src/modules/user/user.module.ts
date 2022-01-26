@@ -23,9 +23,10 @@ import { UpdateProfileService } from './services/update-profile/update-profile.s
 import { UpdateProfileController } from './controllers/update-profile/update-profile.controller';
 import { DeleteProfileController } from './controllers/delete-profile/delete-profile.controller';
 import { DeleteProfileService } from './services/delete-profile/delete-profile.service';
+import { UserTokenModule } from '../user-token/user-token.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), RolesModule],
+  imports: [TypeOrmModule.forFeature([User]), RolesModule, UserTokenModule],
   controllers: [
     CreateUserController,
     ListUsersController,

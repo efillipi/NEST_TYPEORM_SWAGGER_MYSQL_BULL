@@ -2,14 +2,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import Role from 'src/modules/roles/entities/Role';
 import { Exclude, Expose } from 'class-transformer';
+import UserToken from 'src/modules/user-token/entities/UserToken';
 
 @Entity('users')
 class User {
@@ -65,5 +68,9 @@ class User {
   })
   @ApiProperty()
   roles: Role[];
+
+  @OneToMany(() => UserToken, (userToken) => userToken.id_user)
+  @JoinColumn({ name: 'id' })
+  userToken: UserToken[];
 }
 export default User;

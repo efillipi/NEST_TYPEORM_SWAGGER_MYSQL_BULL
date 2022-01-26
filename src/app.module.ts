@@ -6,6 +6,7 @@ import { HashProviderService } from './shared/providers/hash-provider/hash-provi
 import { AuthenticationUserModule } from './modules/authentication-user/authentication-user.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { DiskStorageProviderService } from './shared/providers/disk-storage-provider/disk-storage-provider.service';
+import { UserTokenModule } from './modules/user-token/user-token.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { DiskStorageProviderService } from './shared/providers/disk-storage-prov
     UserModule,
     AuthenticationUserModule,
     RolesModule,
+    UserTokenModule,
   ],
   providers: [HashProviderService, DiskStorageProviderService],
 })

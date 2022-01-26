@@ -4,6 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { RoleRepositoryService } from 'src/modules/roles/repositories/RoleRepository';
+import { UserTokenRepositoryService } from 'src/modules/user-token/repositories/UserTokenRepository';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 import User from '../../entities/User';
@@ -16,6 +17,7 @@ export class CreateUserService {
     private readonly userRepository: UserRepositoryService,
     private readonly roleRepository: RoleRepositoryService,
     private hashProviderService: HashProviderService,
+    private userTokenRepository: UserTokenRepositoryService,
   ) {}
   async execute(data: IRequestCreateUserDTO): Promise<User> {
     const userExsists = await this.userRepository.findSomething({
@@ -39,6 +41,11 @@ export class CreateUserService {
       email: data.email,
       password: hash,
       roles: rolesExists,
+    });
+
+    await this.userTokenRepository.generate({
+      id_user: this.user.id,
+      type: 'ValidateContaService',
     });
 
     return this.user;
