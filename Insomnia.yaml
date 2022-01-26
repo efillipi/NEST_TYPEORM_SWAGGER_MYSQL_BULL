@@ -40,7 +40,7 @@ resources:
     parentId: null
     modified: 1642430707932
     created: 1642430707932
-    name: Api-typeorm-cursos
+    name: nest_api
     description: ""
     scope: collection
     _type: workspace
@@ -521,7 +521,7 @@ resources:
     parentId: wrk_1252a201976c4807a7d86fbf647a9072
     modified: 1642430707940
     created: 1642430707940
-    fileName: Api-typeorm-cursos
+    fileName: nest_api
     contents: ""
     contentType: yaml
     _type: api_spec
