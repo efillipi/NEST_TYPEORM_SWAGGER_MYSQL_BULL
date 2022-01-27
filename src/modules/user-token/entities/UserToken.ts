@@ -29,7 +29,7 @@ class UserToken {
   id_user: number;
 
   @ApiProperty()
-  @Column({ default: false })
+  @Column({ default: true })
   active: boolean;
 
   @ApiProperty()

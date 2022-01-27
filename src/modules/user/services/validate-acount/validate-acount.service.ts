@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotAcceptableException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UserTokenRepositoryService } from 'src/modules/user-token/repositories/UserTokenRepository';
 import { UserRepositoryService } from '../../repositories/UserRepository';
 import { isAfter, addMinutes } from 'date-fns';
@@ -24,7 +20,7 @@ export class ValidateAcountService {
     const userToken = await this.userTokenRepository.findSomething({ token });
 
     if (!userToken) {
-      throw new NotAcceptableException('Invalid Token');
+      throw new BadRequestException('Invalid Token');
     }
 
     if (userToken.type !== VALIDATE_CONTA_SERVICE) {
@@ -46,16 +42,15 @@ export class ValidateAcountService {
       throw new BadRequestException('Expired Token');
     }
 
-    const user = await this.usersRepository.findSomething({
-      id: userToken.id_user,
-    });
+    const user = userToken.user;
 
     if (!user) {
-      throw new NotAcceptableException('Invalid Token');
+      throw new BadRequestException('Invalid Token');
     }
 
     user.active = true;
+    userToken.active = false;
     await this.usersRepository.save(user);
-    await this.userTokenRepository.delete(userToken.id);
+    await this.userTokenRepository.save(userToken);
   }
 }

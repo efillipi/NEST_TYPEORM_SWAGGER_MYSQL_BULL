@@ -30,6 +30,4 @@ async function server() {
   await app.listen(API_PORT);
 }
 
-server().then(() =>
-  console.log(`💻 Starting in http://localhost/:${API_PORT}`),
-);
+server().then(() => console.log(`💻 Starting in http://localhost:${API_PORT}`));

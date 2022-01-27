@@ -32,8 +32,8 @@ class User {
   @Exclude()
   password: string;
 
-  @Column()
-  @ApiProperty({ default: false })
+  @Column({ default: false })
+  @ApiProperty()
   active: boolean;
 
   @Column({ nullable: true })
