@@ -9,7 +9,9 @@ describe('FindUserTokenByIdController', () => {
       controllers: [FindUserTokenByIdController],
     }).compile();
 
-    controller = module.get<FindUserTokenByIdController>(FindUserTokenByIdController);
+    controller = module.get<FindUserTokenByIdController>(
+      FindUserTokenByIdController,
+    );
   });
 
   it('should be defined', () => {

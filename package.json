@@ -22,7 +22,6 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "NODE_ENV=dev ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "views": "cp -r ./src/shared/views/ ./dist/shared/views/"
-
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -33,11 +32,13 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.1.5",
     "@nestjs/typeorm": "^8.0.3",
+    "@sendgrid/mail": "^7.6.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "date-fns": "^2.28.0",
     "dotenv": "^14.1.0",
+    "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.4",
     "mysql2": "^2.3.3",

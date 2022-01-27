@@ -7,6 +7,8 @@ import { AuthenticationUserModule } from './modules/authentication-user/authenti
 import { RolesModule } from './modules/roles/roles.module';
 import { DiskStorageProviderService } from './shared/providers/disk-storage-provider/disk-storage-provider.service';
 import { UserTokenModule } from './modules/user-token/user-token.module';
+import { MailTemplateProviderService } from './shared/providers/mail-template-provider/mail-template-provider.service';
+import { MailProviderModule } from './shared/providers/mail-provider/mail-provider.module';
 
 @Module({
   imports: [
@@ -20,7 +22,12 @@ import { UserTokenModule } from './modules/user-token/user-token.module';
     AuthenticationUserModule,
     RolesModule,
     UserTokenModule,
+    MailProviderModule,
   ],
-  providers: [HashProviderService, DiskStorageProviderService],
+  providers: [
+    HashProviderService,
+    DiskStorageProviderService,
+    MailTemplateProviderService,
+  ],
 })
 export class AppModule {}

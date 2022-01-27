@@ -26,9 +26,15 @@ import { DeleteProfileService } from './services/delete-profile/delete-profile.s
 import { UserTokenModule } from '../user-token/user-token.module';
 import { ValidateAcountService } from './services/validate-acount/validate-acount.service';
 import { ValidateAcountController } from './controllers/validate-acount/validate-acount.controller';
+import { MailProviderModule } from 'src/shared/providers/mail-provider/mail-provider.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), RolesModule, UserTokenModule],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    RolesModule,
+    UserTokenModule,
+    MailProviderModule,
+  ],
   controllers: [
     CreateUserController,
     ListUsersController,

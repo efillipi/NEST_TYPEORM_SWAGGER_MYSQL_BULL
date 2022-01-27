@@ -73,7 +73,7 @@ class User {
   @ApiProperty()
   roles: Role[];
 
-  @OneToMany(() => UserToken, (userToken) => userToken.id_user)
+  @OneToMany(() => UserToken, (userToken) => userToken.user)
   @JoinColumn({ name: 'id' })
   userToken: UserToken[];
 }

@@ -40,7 +40,10 @@ class UserToken {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => User, (user) => user.userToken)
+  @ManyToOne(() => User, (user) => user.userToken, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_user' })
   user: User;
 }

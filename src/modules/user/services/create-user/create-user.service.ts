@@ -2,14 +2,18 @@ import {
   Injectable,
   ConflictException,
   NotFoundException,
+  BadGatewayException,
 } from '@nestjs/common';
+import User from '../../entities/User';
 import { RoleRepositoryService } from 'src/modules/roles/repositories/RoleRepository';
 import { UserTokenRepositoryService } from 'src/modules/user-token/repositories/UserTokenRepository';
 import { HashProviderService } from 'src/shared/providers/hash-provider/hash-provider.service';
 import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
-import User from '../../entities/User';
 import { UserRepositoryService } from '../../repositories/UserRepository';
+
 import typeTokenConfig from 'src/config/typeToken';
+import { emailConfirmation } from 'src/config/templateEmail';
+import { MailProviderService } from 'src/shared/providers/mail-provider/mail-provider/mail-provider.service';
 const { VALIDATE_CONTA_SERVICE } = typeTokenConfig;
 
 @Injectable()
@@ -20,6 +24,7 @@ export class CreateUserService {
     private readonly roleRepository: RoleRepositoryService,
     private hashProviderService: HashProviderService,
     private userTokenRepository: UserTokenRepositoryService,
+    private mailProviderService: MailProviderService,
   ) {}
   async execute(data: IRequestCreateUserDTO): Promise<User> {
     const userExsists = await this.userRepository.findSomething({
@@ -45,10 +50,33 @@ export class CreateUserService {
       roles: rolesExists,
     });
 
-    await this.userTokenRepository.generate({
+    const { token } = await this.userTokenRepository.generate({
       id_user: this.user.id,
       type: VALIDATE_CONTA_SERVICE,
     });
+
+    const sendMail = await this.mailProviderService.sendMail({
+      to: {
+        email: data.email,
+        name: data.name,
+      },
+      subject: 'Confirmação de email ',
+      templateData: {
+        file: emailConfirmation,
+        variables: {
+          name: data.name,
+          token,
+          link: `${process.env.APP_API_URL}/validate-acount/${token}`,
+        },
+      },
+    });
+
+    if (!sendMail) {
+      await this.userRepository.delete(this.user.id);
+      throw new BadGatewayException(
+        'Failed to send confirmation token to email',
+      );
+    }
 
     return this.user;
   }
