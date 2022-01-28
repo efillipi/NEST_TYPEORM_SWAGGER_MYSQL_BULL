@@ -2,7 +2,7 @@ import {
   Injectable,
   ConflictException,
   NotFoundException,
-  BadGatewayException,
+  BadRequestException,
 } from '@nestjs/common';
 import User from '../../entities/User';
 import { RoleRepositoryService } from 'src/modules/roles/repositories/RoleRepository';
@@ -13,7 +13,7 @@ import { UserRepositoryService } from '../../repositories/UserRepository';
 import typeTokenConfig from 'src/config/typeToken';
 import { emailConfirmation } from 'src/config/templateEmail';
 import { MailExportsService } from 'src/shared/providers/mail-provider/mail-exports/mail-exports.service';
-const { VALIDATE_CONTA_SERVICE } = typeTokenConfig;
+const { VALIDATE_CONTA } = typeTokenConfig;
 
 @Injectable()
 export class CreateUserService {
@@ -55,7 +55,7 @@ export class CreateUserService {
 
     const { token } = await this.userTokenRepository.generate({
       id_user: this.user.id,
-      type: VALIDATE_CONTA_SERVICE,
+      type: VALIDATE_CONTA,
     });
 
     try {
@@ -77,7 +77,7 @@ export class CreateUserService {
       return { user: this.user, sendMail };
     } catch (error) {
       await this.userRepository.delete(this.user.id);
-      throw new BadGatewayException(
+      throw new BadRequestException(
         'Failed to send confirmation token to email',
       );
     }

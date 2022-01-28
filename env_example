@@ -37,4 +37,4 @@ MAIL_DRIVER=mailFake
 
 # Mail SendGrid - Produção
 SG_API_KEY= sua Key do SendGrid
-MAIL_CONTACT=e.fillipi@gmail.com
+MAIL_CONTACT= email SendGrid

@@ -6,12 +6,12 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
+import User from '../../entities/User';
 import { CreateUserService } from '../../services/create-user/create-user.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
-import User from '../../entities/User';
 import { AuthGuard } from '@nestjs/passport';
-import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 import { RolesGuard } from 'src/shared/guards/role.guard';
 import { Roles } from 'src/shared/guards/decorators/roles.decorator';
 import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
@@ -33,6 +33,11 @@ export class CreateUserController {
   @ApiResponse({
     status: 400,
     description: 'Invalid data',
+    type: BadRequestSwagger,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Failed to send confirmation token to email',
     type: BadRequestSwagger,
   })
   @ApiResponse({

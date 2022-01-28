@@ -3,7 +3,7 @@ import { UserTokenRepositoryService } from 'src/modules/user-token/repositories/
 import { UserRepositoryService } from '../../repositories/UserRepository';
 import { isAfter, addMinutes } from 'date-fns';
 import typeTokenConfig from 'src/config/typeToken';
-const { VALIDATE_CONTA_SERVICE } = typeTokenConfig;
+const { VALIDATE_CONTA } = typeTokenConfig;
 
 interface IRequest {
   token: string;
@@ -23,7 +23,7 @@ export class ValidateAcountService {
       throw new BadRequestException('Invalid Token');
     }
 
-    if (userToken.type !== VALIDATE_CONTA_SERVICE) {
+    if (userToken.type !== VALIDATE_CONTA) {
       throw new BadRequestException('Invalid Token');
     }
 
