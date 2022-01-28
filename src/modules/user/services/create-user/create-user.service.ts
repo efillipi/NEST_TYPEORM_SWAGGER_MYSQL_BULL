@@ -12,9 +12,7 @@ import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 import { UserRepositoryService } from '../../repositories/UserRepository';
 import typeTokenConfig from 'src/config/typeToken';
 import { emailConfirmation } from 'src/config/templateEmail';
-import { SendgridService } from 'src/shared/providers/mail-provider/mail-provider/mail-provider.service';
-import { EtherealMailProviderService } from 'src/shared/providers/mail-provider/ethereal-mail-provider/ethereal-mail-provider.service';
-import { UserModule } from '../../user.module';
+import { MailExportsService } from 'src/shared/providers/mail-provider/mail-exports/mail-exports.service';
 const { VALIDATE_CONTA_SERVICE } = typeTokenConfig;
 
 @Injectable()
@@ -26,11 +24,11 @@ export class CreateUserService {
     private readonly roleRepository: RoleRepositoryService,
     private hashProviderService: HashProviderService,
     private userTokenRepository: UserTokenRepositoryService,
-    private mailProviderService: EtherealMailProviderService,
+    private mailProviderService: MailExportsService,
   ) {}
   async execute(data: IRequestCreateUserDTO): Promise<{
     user: User;
-    sendMail: string | false;
+    sendMail: string | boolean;
   }> {
     const userExsists = await this.userRepository.findSomething({
       email: data.email,
