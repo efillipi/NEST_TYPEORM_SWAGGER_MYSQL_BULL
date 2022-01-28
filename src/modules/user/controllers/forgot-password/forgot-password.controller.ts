@@ -28,11 +28,6 @@ export class ForgotPasswordController {
   })
   @ApiResponse({
     status: 401,
-    description: 'Authentication Failure',
-    type: ErrorRequestSwagger,
-  })
-  @ApiResponse({
-    status: 401,
     description: 'Inactive user',
     type: ErrorRequestSwagger,
   })
