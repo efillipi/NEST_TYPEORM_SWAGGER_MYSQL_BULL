@@ -9,7 +9,7 @@ import { MailExportsService } from 'src/shared/providers/mail-provider/mail-expo
 import { UserRepositoryService } from '../../repositories/UserRepository';
 import { forgotPassword } from 'src/config/templateEmail';
 import typeTokenConfig from 'src/config/typeToken';
-import IForgotPasswordDTO from '../../dtos/IForgotPasswordDTO ';
+import IForgotPasswordDTO from '../../dtos/IForgotPasswordDTO';
 const { FORGOT_PASSWORD } = typeTokenConfig;
 
 @Injectable()

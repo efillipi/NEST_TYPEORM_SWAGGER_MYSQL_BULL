@@ -29,6 +29,8 @@ import { ValidateAcountController } from './controllers/validate-acount/validate
 import { MailProviderModule } from 'src/shared/providers/mail-provider/mail-provider.module';
 import { ForgotPasswordService } from './services/forgot-password/forgot-password.service';
 import { ForgotPasswordController } from './controllers/forgot-password/forgot-password.controller';
+import { ResetPasswordService } from './services/reset-password/reset-password.service';
+import { ResetPasswordController } from './controllers/reset-password/reset-password.controller';
 
 @Module({
   imports: [
@@ -49,6 +51,7 @@ import { ForgotPasswordController } from './controllers/forgot-password/forgot-p
     DeleteProfileController,
     ValidateAcountController,
     ForgotPasswordController,
+    ResetPasswordController,
   ],
   providers: [
     CreateUserService,
@@ -65,6 +68,7 @@ import { ForgotPasswordController } from './controllers/forgot-password/forgot-p
     DeleteProfileService,
     ValidateAcountService,
     ForgotPasswordService,
+    ResetPasswordService,
   ],
   exports: [UserRepositoryService],
 })

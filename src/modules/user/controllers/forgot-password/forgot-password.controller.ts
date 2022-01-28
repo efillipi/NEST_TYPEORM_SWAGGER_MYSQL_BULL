@@ -2,7 +2,7 @@ import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/shared/helpers/swagger/bad-request.swagger';
 import { ErrorRequestSwagger } from 'src/shared/helpers/swagger/error-request.swagger';
-import IForgotPasswordDTO from '../../dtos/IForgotPasswordDTO ';
+import IForgotPasswordDTO from '../../dtos/IForgotPasswordDTO';
 import { ForgotPasswordService } from '../../services/forgot-password/forgot-password.service';
 
 @Controller('password/forgot')
@@ -24,7 +24,7 @@ export class ForgotPasswordController {
   @ApiResponse({
     status: 400,
     description: 'Failed to send confirmation token to email',
-    type: BadRequestSwagger,
+    type: ErrorRequestSwagger,
   })
   @ApiResponse({
     status: 401,
