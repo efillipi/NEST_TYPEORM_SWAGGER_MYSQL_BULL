@@ -4,7 +4,7 @@ import { MailTemplateProviderService } from '../../mail-template-provider/mail-t
 import ISenMailDTO from '../dtos/ISenMailDTO';
 
 @Injectable()
-export class MailProviderService {
+export class SendgridService {
   private client: MailService;
 
   constructor(private mailTemplateProvider: MailTemplateProviderService) {
