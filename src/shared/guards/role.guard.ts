@@ -42,6 +42,10 @@ export class RolesGuard implements CanActivate {
       { relations: ['roles'] },
     );
 
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+
     const userHasRole = user.roles.some((role) => roles.includes(role.name));
 
     if (!userHasRole) {
