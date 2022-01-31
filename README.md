@@ -1,10 +1,13 @@
-- [x] NodeJS com Typescript,
+- [x] NodeJS - Typescript,
 - [x] Docker,
-- [x] Nest,
-- [x] Mysql,
+- [x] NEST,
+- [x] MYSQL,
+- [x] REDIS,
 - [x] TYPEORM
-- [x] Swagger
+- [x] SWAGGER
 - [x] JWT
+- [x] ACCESS LEVEL
+- [x] SOLID
 - [x] BULL-QUEUE
 
 ## Getting started
