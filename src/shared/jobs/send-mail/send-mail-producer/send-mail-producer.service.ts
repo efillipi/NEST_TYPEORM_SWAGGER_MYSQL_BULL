@@ -16,7 +16,7 @@ export class SendMailProducerService {
         email: user.email,
         name: user.name,
       },
-      subject: 'Confirmação de email ',
+      subject: 'Confirmação de email',
       templateData: {
         file: emailConfirmation,
         variables: {
@@ -36,7 +36,7 @@ export class SendMailProducerService {
         email: user.email,
         name: user.name,
       },
-      subject: 'Recuperação de senha ',
+      subject: 'Recuperação de senha',
       templateData: {
         file: forgotPassword,
         variables: {
