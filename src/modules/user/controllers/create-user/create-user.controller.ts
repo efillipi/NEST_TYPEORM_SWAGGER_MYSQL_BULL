@@ -36,11 +36,6 @@ export class CreateUserController {
     type: BadRequestSwagger,
   })
   @ApiResponse({
-    status: 400,
-    description: 'Failed to send confirmation token to email',
-    type: BadRequestSwagger,
-  })
-  @ApiResponse({
     status: 401,
     description: 'Unauthorized',
     type: ErrorRequestSwagger,

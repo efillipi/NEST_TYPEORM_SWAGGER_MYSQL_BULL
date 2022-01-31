@@ -22,11 +22,6 @@ export class ForgotPasswordController {
     type: BadRequestSwagger,
   })
   @ApiResponse({
-    status: 400,
-    description: 'Failed to send confirmation token to email',
-    type: ErrorRequestSwagger,
-  })
-  @ApiResponse({
     status: 401,
     description: 'Inactive user',
     type: ErrorRequestSwagger,

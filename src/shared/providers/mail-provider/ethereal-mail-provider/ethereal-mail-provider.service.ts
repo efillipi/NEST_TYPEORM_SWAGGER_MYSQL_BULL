@@ -42,6 +42,7 @@ export class EtherealMailProviderService {
       html: await this.mailTemplateProvider.parse(templateData),
     });
 
-    return getTestMessageUrl(message);
+    console.log('Message sent: %s', message.messageId);
+    console.log('Preview URL: %s', getTestMessageUrl(message));
   }
 }

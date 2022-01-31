@@ -2,7 +2,6 @@ import {
   Injectable,
   ConflictException,
   NotFoundException,
-  BadRequestException,
 } from '@nestjs/common';
 import User from '../../entities/User';
 import { RoleRepositoryService } from 'src/modules/roles/repositories/RoleRepository';
@@ -11,8 +10,7 @@ import { HashProviderService } from 'src/shared/providers/hash-provider/hash-pro
 import IRequestCreateUserDTO from '../../dtos/IRequestCreateUserDTO';
 import { UserRepositoryService } from '../../repositories/UserRepository';
 import typeTokenConfig from 'src/config/typeToken';
-import { emailConfirmation } from 'src/config/templateEmail';
-import { MailExportsService } from 'src/shared/providers/mail-provider/mail-exports/mail-exports.service';
+import { SendMailProducerService } from 'src/shared/jobs/send-mail/send-mail-producer/send-mail-producer.service';
 const { VALIDATE_CONTA } = typeTokenConfig;
 
 @Injectable()
@@ -24,12 +22,9 @@ export class CreateUserService {
     private readonly roleRepository: RoleRepositoryService,
     private hashProviderService: HashProviderService,
     private userTokenRepository: UserTokenRepositoryService,
-    private mailProviderService: MailExportsService,
+    private mailProviderService: SendMailProducerService,
   ) {}
-  async execute(data: IRequestCreateUserDTO): Promise<{
-    user: User;
-    sendMail: string | boolean;
-  }> {
+  async execute(data: IRequestCreateUserDTO): Promise<User> {
     const userExsists = await this.userRepository.findSomething({
       email: data.email,
     });
@@ -58,28 +53,11 @@ export class CreateUserService {
       type: VALIDATE_CONTA,
     });
 
-    try {
-      const sendMail = await this.mailProviderService.sendMail({
-        to: {
-          email: data.email,
-          name: data.name,
-        },
-        subject: 'Confirmação de email ',
-        templateData: {
-          file: emailConfirmation,
-          variables: {
-            name: data.name,
-            token,
-            link: `${process.env.APP_API_URL}/validate-acount/${token}`,
-          },
-        },
-      });
-      return { user: this.user, sendMail };
-    } catch (error) {
-      await this.userRepository.delete(this.user.id);
-      throw new BadRequestException(
-        'Failed to send confirmation token to email',
-      );
-    }
+    await this.mailProviderService.sendMailValidateAcount({
+      token,
+      user: this.user,
+    });
+
+    return this.user;
   }
 }

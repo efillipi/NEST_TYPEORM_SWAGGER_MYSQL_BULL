@@ -1,15 +1,13 @@
 import {
-  BadRequestException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { UserTokenRepositoryService } from 'src/modules/user-token/repositories/UserTokenRepository';
-import { MailExportsService } from 'src/shared/providers/mail-provider/mail-exports/mail-exports.service';
 import { UserRepositoryService } from '../../repositories/UserRepository';
-import { forgotPassword } from 'src/config/templateEmail';
 import typeTokenConfig from 'src/config/typeToken';
 import IForgotPasswordDTO from '../../dtos/IForgotPasswordDTO';
+import { SendMailProducerService } from 'src/shared/jobs/send-mail/send-mail-producer/send-mail-producer.service';
 const { FORGOT_PASSWORD } = typeTokenConfig;
 
 @Injectable()
@@ -17,14 +15,12 @@ export class ForgotPasswordService {
   constructor(
     private usersRepository: UserRepositoryService,
 
-    private mailProvider: MailExportsService,
+    private mailProvider: SendMailProducerService,
 
     private userTokenRepository: UserTokenRepositoryService,
   ) {}
 
-  public async execute(
-    data: IForgotPasswordDTO,
-  ): Promise<{ sendMail: string | boolean }> {
+  public async execute(data: IForgotPasswordDTO): Promise<void> {
     const user = await this.usersRepository.findSomething({
       email: data.email,
     });
@@ -43,27 +39,9 @@ export class ForgotPasswordService {
       tokenGenerate: true,
     });
 
-    try {
-      const sendMail = await this.mailProvider.sendMail({
-        to: {
-          email: data.email,
-          name: user.name,
-        },
-        subject: 'Recuperação de senha ',
-        templateData: {
-          file: forgotPassword,
-          variables: {
-            name: user.name,
-            token,
-          },
-        },
-      });
-
-      return { sendMail };
-    } catch (error) {
-      throw new BadRequestException(
-        'Failed to send confirmation token to email',
-      );
-    }
+    await this.mailProvider.sendMailForgotPassword({
+      user,
+      token,
+    });
   }
 }

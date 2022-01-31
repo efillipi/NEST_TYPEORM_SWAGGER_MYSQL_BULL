@@ -31,6 +31,7 @@ import { ForgotPasswordService } from './services/forgot-password/forgot-passwor
 import { ForgotPasswordController } from './controllers/forgot-password/forgot-password.controller';
 import { ResetPasswordService } from './services/reset-password/reset-password.service';
 import { ResetPasswordController } from './controllers/reset-password/reset-password.controller';
+import { JobsModule } from 'src/shared/jobs/jobs.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { ResetPasswordController } from './controllers/reset-password/reset-pass
     RolesModule,
     UserTokenModule,
     MailProviderModule,
+    JobsModule,
   ],
   controllers: [
     CreateUserController,

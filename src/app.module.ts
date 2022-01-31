@@ -9,6 +9,7 @@ import { DiskStorageProviderService } from './shared/providers/disk-storage-prov
 import { UserTokenModule } from './modules/user-token/user-token.module';
 import { MailTemplateProviderService } from './shared/providers/mail-template-provider/mail-template-provider.service';
 import { MailProviderModule } from './shared/providers/mail-provider/mail-provider.module';
+import { JobsModule } from './shared/jobs/jobs.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { MailProviderModule } from './shared/providers/mail-provider/mail-provid
     RolesModule,
     UserTokenModule,
     MailProviderModule,
+    JobsModule,
   ],
   providers: [
     HashProviderService,
