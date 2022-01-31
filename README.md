@@ -21,5 +21,6 @@
 8. Enjoy sending requests to REST API available at `http://localhost:3333`.<br />
   8.1. You can import `Insomnia file` - `Insomnia.yaml`.<br />
 9. Log in to `http://localhost:3333/swagger` view the API documentation .<br />
+10. Log in to `http://localhost:3333/admin/queues` view the API queue .<br />
 
 <h3 align="center">Developed by Edney Fillipi</h3>
