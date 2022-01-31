@@ -1,14 +1,14 @@
 import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { Queue } from 'bull';
-import ISendMailValidateAcountDTO from '../dtos/ISendMailValidateAcountDTO';
 import { emailConfirmation, forgotPassword } from 'src/config/templateEmail';
+import ISendMailProducerDTO from '../dtos/ISendMailProducerDTO';
 
 @Injectable()
 export class SendMailProducerService {
   constructor(@InjectQueue('sendMail-queue') private queue: Queue) {}
 
-  async sendMailValidateAcount(data: ISendMailValidateAcountDTO) {
+  async sendMailValidateAcount(data: ISendMailProducerDTO) {
     const { token, user } = data;
 
     await this.queue.add('sendMail-job', {
@@ -28,7 +28,7 @@ export class SendMailProducerService {
     });
   }
 
-  async sendMailForgotPassword(data: ISendMailValidateAcountDTO) {
+  async sendMailForgotPassword(data: ISendMailProducerDTO) {
     const { token, user } = data;
 
     await this.queue.add('sendMail-job', {
