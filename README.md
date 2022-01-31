@@ -1,5 +1,3 @@
-# api-typeorm-cursos
-
 - [x] NodeJS com Typescript,
 - [x] Docker,
 - [x] Nest,
