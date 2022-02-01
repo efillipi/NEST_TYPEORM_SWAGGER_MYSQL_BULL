@@ -5,7 +5,7 @@ import { getRepository, MigrationInterface, Repository } from 'typeorm';
 import users from './seed_info/users.seed';
 import roles from './seed_info/roles.seed';
 
-export class SeedTableUsers1642512983561 implements MigrationInterface {
+export class SeedTableUsers9999999999999 implements MigrationInterface {
   private userRepository: Repository<User> = getRepository(User);
   private roleRepository: Repository<Role> = getRepository(Role);
 

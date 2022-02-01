@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    entrypoint: 
+      sh -c "yarn && yarn typeorm migration:generate -n migration && yarn typeorm migration:run && yarn start:dev "
+    
+    ports:
+      - 3333:3333
+    
+    environment:
+      API_PORT: 3333
+      APP_API_URL: http://localhost:3333
+      JWT_KEY: 41fbb223d60aea75c61b380adf59591d
+      JWT_EXPIRESIN: 1h
+      TOKEN_TIME_MINUTES: 30
+
+      DB_NAME: default
+      DB_CLIENT: mysql
+      DB_PORT: 3306
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: efillipi
+      DB_DATABASE: api_nest
+      DB_SYNCHRONIZE: 'true'
+  
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: efillipi
+
+      API_USER_ADM_NAME: ADM
+      API_USER_ADM_LOGIN: adm@adm.com
+      API_USER_ADM_SENHA: 102030
+
+      API_USER_NAME: USER
+      API_USER_LOGIN: user@user.com
+      API_USER_SENHA: 102030
+
+      API_ROLE_ADM_NAME: ADM
+      API_ROLE_ADM_DESCRIPTION: ADM IN SYSTEM
+
+      API_ROLE_USER_NAME: USER
+      API_ROLE_USER_DESCRIPTION: USER IN SYSTEM
+
+      STORAGE_DRIVER: disk
+
+      MAIL_DRIVER: mailFake
+
+    depends_on:
+        - redis
+        - mysql
+    links: 
+      - redis
+      - mysql
+
+  redis:
+    image: redis:6.2.6-alpine3.14
+    ports:
+      - 6379:6379
+    environment:
+      REDIS_PASSWORD: efillipi
+
+  mysql:
+    image: mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: api_nest
+      MYSQL_ROOT_PASSWORD: efillipi
+
+
+
