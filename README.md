@@ -19,7 +19,7 @@
 5. Run `npm or yarn install` on API.<br />
 6. Run `npm or yarn typeorm migration:run`.<br />
 7. Run `npm or yarn typeorm migration:run -c seed` up db info.<br />
-8. Run `yarn start:prod or start:dev or start` on API.<br />
+8. Run `npm or yarn start:prod or start:dev or start` on API.<br />
 9. Enjoy sending requests to REST API available at `http://localhost:3333`.<br />
   9.1. You can import `Insomnia file` - `Insomnia.yaml`.<br />
 10. Log in to `http://localhost:3333/swagger` view the API documentation .<br />
