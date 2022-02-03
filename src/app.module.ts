@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnectionOptions } from 'typeorm';
 import { UserModule } from './modules/user/user.module';
@@ -10,6 +11,7 @@ import { UserTokenModule } from './modules/user-token/user-token.module';
 import { MailTemplateProviderService } from './shared/providers/mail-template-provider/mail-template-provider.service';
 import { MailProviderModule } from './shared/providers/mail-provider/mail-provider.module';
 import { JobsModule } from './shared/jobs/jobs.module';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -19,6 +21,10 @@ import { JobsModule } from './shared/jobs/jobs.module';
           autoLoadEntities: true,
         }),
     }),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
+    }),
     UserModule,
     AuthenticationUserModule,
     RolesModule,
@@ -27,6 +33,10 @@ import { JobsModule } from './shared/jobs/jobs.module';
     JobsModule,
   ],
   providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
     HashProviderService,
     DiskStorageProviderService,
     MailTemplateProviderService,
