@@ -1,11 +1,11 @@
 _type: export
 __export_format: 4
-__export_date: 2022-01-25T21:14:22.715Z
+__export_date: 2022-02-03T17:48:31.832Z
 __export_source: insomnia.desktop.app:v2021.7.2
 resources:
   - _id: req_2f180a8f2fcf4abfa99b82d0ab38a0da
     parentId: fld_4e0fb1f17a2847e4ba8d36a95760828c
-    modified: 1643053742061
+    modified: 1643397240085
     created: 1643032664918
     url: "{{ _.base_url }}swagger"
     name: DOC
@@ -40,7 +40,7 @@ resources:
     parentId: null
     modified: 1642430707932
     created: 1642430707932
-    name: nest_api
+    name: Api-typeorm-cursos
     description: ""
     scope: collection
     _type: workspace
@@ -188,9 +188,94 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_dae740fd4d1844e0a7a484df4ec5e1d3
+    parentId: fld_4c6194ea44944ade876cfcdabc3c88a0
+    modified: 1643837989973
+    created: 1643390756919
+    url: "{{ _.base_url }}password/forgot"
+    name: Forgot Password
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email":"e.fillipi@gmail.com"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e39cf987a78645b78294f44a1ddaf162
+    authentication:
+      type: bearer
+      token: ""
+      disabled: true
+    metaSortKey: -1642583541261.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_4c6194ea44944ade876cfcdabc3c88a0
+    parentId: fld_030dd1ec1e544565a261e5f50461824e
+    modified: 1643390775558
+    created: 1643390775558
+    name: Forgot Password
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1643390775558
+    _type: request_group
+  - _id: fld_030dd1ec1e544565a261e5f50461824e
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1643223328180
+    created: 1642516854408
+    name: Users
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642516854408
+    _type: request_group
+  - _id: req_4400eed2d47c445ea529e651b61aa566
+    parentId: fld_4c6194ea44944ade876cfcdabc3c88a0
+    modified: 1643394055073
+    created: 1643393118507
+    url: "{{ _.base_url }}password/reset"
+    name: Reset Password
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"token":"194884",
+        	"password":"edney"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e39cf987a78645b78294f44a1ddaf162
+    authentication:
+      type: bearer
+      token: ""
+      disabled: true
+    metaSortKey: -1642508072975.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_76c15b2e3d4f4f618e6f1fa99c0f5071
-    parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
-    modified: 1643048932282
+    parentId: fld_feaa489f000a4e6da5e98dff0c55a362
+    modified: 1643227026476
     created: 1643036377328
     url: "{{ _.base_url }}users/avatar"
     name: Update Avatar
@@ -224,6 +309,16 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: fld_feaa489f000a4e6da5e98dff0c55a362
+    parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
+    modified: 1643227024076
+    created: 1643227024076
+    name: AVATAR
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1643227024076
+    _type: request_group
   - _id: fld_1a77fe87c61c49599a1c5e02bfe828f8
     parentId: fld_030dd1ec1e544565a261e5f50461824e
     modified: 1643036351575
@@ -234,19 +329,9 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1643036351575
     _type: request_group
-  - _id: fld_030dd1ec1e544565a261e5f50461824e
-    parentId: wrk_1252a201976c4807a7d86fbf647a9072
-    modified: 1642516854408
-    created: 1642516854408
-    name: User
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1642516854408
-    _type: request_group
   - _id: req_56917abb79ed486d8ffcc7b9ddcad2e1
     parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
-    modified: 1643053586133
+    modified: 1643294172918
     created: 1643050364123
     url: "{{ _.base_url }}profile/user"
     name: Update Profile
@@ -279,7 +364,7 @@ resources:
     _type: request
   - _id: req_2be226a3829e4be8a656fd7e53bf7ced
     parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
-    modified: 1643054762063
+    modified: 1643394241167
     created: 1643047672238
     url: "{{ _.base_url }}profile/user"
     name: Show Profile
@@ -303,7 +388,7 @@ resources:
     _type: request
   - _id: req_68e7c8162c5241d8b8623d1e3336bdfc
     parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
-    modified: 1643054930497
+    modified: 1643394249594
     created: 1643054750583
     url: "{{ _.base_url }}profile/user"
     name: Delete Profile
@@ -324,9 +409,32 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_8fce0bf0bbbe4db297a6ab833583c378
+    parentId: fld_1a77fe87c61c49599a1c5e02bfe828f8
+    modified: 1643317246128
+    created: 1643293171503
+    url: "{{ _.base_url }}validate-acount/afd65d8e-c50d-47e8-a831-8a813ee4f35e"
+    name: Validate acount
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1642583541311.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_4f5ec41b09934337857265b5d213f652
     parentId: fld_030dd1ec1e544565a261e5f50461824e
-    modified: 1643052807447
+    modified: 1643909265224
     created: 1642432604690
     url: "{{ _.base_url }}users"
     name: Create
@@ -336,8 +444,8 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"name":"{% now 'unix', '' %}",
-        	"email":"{% now 'millis', '' %}@gmail.com",
+        	"name":"{% uuid 'v4' %}",
+        	"email":"e.fillip1i@gmail.com",
         	"password":"102030",
         	"roles":["USER"]
         }
@@ -360,7 +468,7 @@ resources:
     _type: request
   - _id: req_75a7cb47f334434e84788d9b78436128
     parentId: fld_030dd1ec1e544565a261e5f50461824e
-    modified: 1643054838785
+    modified: 1643909308313
     created: 1642430714828
     url: "{{ _.base_url }}users"
     name: Find
@@ -384,7 +492,7 @@ resources:
     _type: request
   - _id: req_4898920a5b764691b2a3464069ec930e
     parentId: fld_030dd1ec1e544565a261e5f50461824e
-    modified: 1643054837790
+    modified: 1643315796864
     created: 1642434012602
     url: "{{ _.base_url }}users/5"
     name: Byi id
@@ -407,7 +515,7 @@ resources:
     _type: request
   - _id: req_00cbbc1d641f4e5b93394dc015a4fa88
     parentId: fld_030dd1ec1e544565a261e5f50461824e
-    modified: 1643053499087
+    modified: 1643384370866
     created: 1642434454944
     url: "{{ _.base_url }}users/1"
     name: update
@@ -438,9 +546,9 @@ resources:
     _type: request
   - _id: req_50614967ee8246d38f4a87d644049502
     parentId: fld_030dd1ec1e544565a261e5f50461824e
-    modified: 1643054738587
+    modified: 1643837922787
     created: 1642434051361
-    url: "{{ _.base_url }}users/27"
+    url: "{{ _.base_url }}users/4"
     name: delete
     description: ""
     method: DELETE
@@ -459,9 +567,66 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_535dbaa8696d4978a60f88bb6171449c
+    parentId: fld_7df0412aaae5498ca88d31edeb69544b
+    modified: 1643837337685
+    created: 1643214241587
+    url: "{{ _.base_url }}tokens"
+    name: Find
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1642432604640
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_7df0412aaae5498ca88d31edeb69544b
+    parentId: wrk_1252a201976c4807a7d86fbf647a9072
+    modified: 1643223336610
+    created: 1643214241523
+    name: Tokens
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642516854383
+    _type: request_group
+  - _id: req_3e8d2c575cc248c7aa8f9ad7b5780bdc
+    parentId: fld_7df0412aaae5498ca88d31edeb69544b
+    modified: 1643393235808
+    created: 1643214241597
+    url: "{{ _.base_url }}tokens/36"
+    name: Byi id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }} "
+    metaSortKey: -1642432604633.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_019742eb4dd646fc8bb073cc70a5b6d2
     parentId: fld_f9092150623847cc9b3377c208a0fc08
-    modified: 1643145226281
+    modified: 1643909305367
     created: 1642516877878
     url: "{{ _.base_url }}sessions"
     name: Login
@@ -471,7 +636,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-        "email":"adm@adm.com",
+        	"email":"adm@adm.com",
         	"password": "102030"
         }
     parameters: []
@@ -521,7 +686,7 @@ resources:
     parentId: wrk_1252a201976c4807a7d86fbf647a9072
     modified: 1642430707940
     created: 1642430707940
-    fileName: nest_api
+    fileName: Api-typeorm-cursos
     contents: ""
     contentType: yaml
     _type: api_spec
