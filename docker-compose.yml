@@ -4,7 +4,7 @@ services:
   app:
     build: .
     entrypoint: 
-      sh -c "yarn && yarn typeorm migration:generate -n migration && yarn typeorm migration:run && yarn start:dev "
+      sh -c "yarn && yarn typeorm migration:generate -n migration && yarn typeorm migration:run && yarn typeorm migration:run -c seed && yarn start"
     
     ports:
       - 3333:3333
@@ -23,7 +23,6 @@ services:
       DB_USER: root
       DB_PASSWORD: efillipi
       DB_DATABASE: api_nest
-      DB_SYNCHRONIZE: 'true'
   
       REDIS_HOST: redis
       REDIS_PORT: 6379
@@ -64,10 +63,7 @@ services:
   mysql:
     image: mysql
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
       MYSQL_DATABASE: api_nest
       MYSQL_ROOT_PASSWORD: efillipi
-
-
-
