@@ -24,4 +24,23 @@
 9. Log in to `http://localhost:3333/swagger` view the API documentation .<br />
 10. Log in to `http://localhost:3333/admin/queues` view the API queue .<br />
 
+## Users API
+
+- USER-ADM
+
+  API_USER_ADM_NAME=ADM
+  API_USER_ADM_LOGIN=adm@adm.com
+  API_USER_ADM_SENHA=102030
+
+- USER-USER
+
+  API_USER_NAME=USER
+  API_USER_LOGIN=user@user.com
+  API_USER_SENHA=102030
+
+## DOCKER COMPOSE
+
+1. Clone this repository;<br />
+2. Start docker compose. `docker-compose up`<br />
+
 <h3 align="center">Developed by Edney Fillipi</h3>

@@ -15,12 +15,7 @@ import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      useFactory: async () =>
-        Object.assign(await getConnectionOptions(), {
-          autoLoadEntities: true,
-        }),
-    }),
+    TypeOrmModule.forRoot(),
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 10,
