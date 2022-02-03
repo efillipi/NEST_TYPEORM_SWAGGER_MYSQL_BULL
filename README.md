@@ -1,8 +1,8 @@
-- [x] NodeJS - Typescript,
-- [x] Docker,
-- [x] NEST,
-- [x] MYSQL,
-- [x] REDIS,
+- [x] NodeJS - Typescript
+- [x] Docker
+- [x] NEST
+- [x] MYSQL
+- [x] REDIS
 - [x] TYPEORM
 - [x] SWAGGER
 - [x] JWT
