@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { getConnectionOptions } from 'typeorm';
 import { UserModule } from './modules/user/user.module';
 import { HashProviderService } from './shared/providers/hash-provider/hash-provider.service';
 import { AuthenticationUserModule } from './modules/authentication-user/authentication-user.module';
