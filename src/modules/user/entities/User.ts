@@ -76,16 +76,5 @@ class User {
   @OneToMany(() => UserToken, (userToken) => userToken.user)
   @JoinColumn({ name: 'id' })
   userToken: UserToken[];
-
-  constructor(user?: Partial<User>) {
-    this.id = user.id;
-    this.name = user.name;
-    this.email = user.email;
-    this.password = user.password;
-    this.active = user.active;
-    this.avatar = user.avatar;
-    this.createdAt = user.createdAt;
-    this.updatedAt = user.updatedAt;
-  }
 }
 export default User;

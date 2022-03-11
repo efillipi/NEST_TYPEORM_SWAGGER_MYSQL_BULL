@@ -14,7 +14,6 @@ module.exports = [
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    synchronize: process.env.DB_SYNCHRONIZE,
     entities: [process.env.TYPEORM_ENTITIES],
     migrations: [process.env.TYPEORM_MIGRATION],
     cli: {
