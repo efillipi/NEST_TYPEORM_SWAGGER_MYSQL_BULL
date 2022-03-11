@@ -1,4 +1,4 @@
-class FakeHashProvider {
+export class FakeHashProvider {
   public async generateHash(payload: string): Promise<string> {
     return payload;
   }
@@ -9,4 +9,3 @@ class FakeHashProvider {
     return hashPassword;
   }
 }
-export default FakeHashProvider;
