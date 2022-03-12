@@ -1,9 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-types */
-
-import User from 'src/modules/user/entities/User';
-
-class FakeJWTAuthProvider {
-  public async sign(_payload: User): Promise<string> {
+export class FakeJWTAuthProvider {
+  public async sign(_payload: any): Promise<string> {
     const token = 'UHOID*(sa7ffs70saf79faynf7fnyn0y8FFSYFSYFY&FNAY&F&Y&FYS';
 
     return token;
@@ -14,4 +10,3 @@ class FakeJWTAuthProvider {
     return { response };
   }
 }
-export default FakeJWTAuthProvider;
