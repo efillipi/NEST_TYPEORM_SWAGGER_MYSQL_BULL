@@ -15,8 +15,6 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/src/modules/**/controllers/**/*.ts',
     '<rootDir>/src/modules/**/services/**/*.ts',
-    '<rootDir>/src/shared/providers/**/*.ts',
-    '<rootDir>/src/shared/jobs/**/*.ts',
   ],
   clearMocks: true,
   coverageReporters: ['text-summary', 'lcov'],
