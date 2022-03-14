@@ -39,6 +39,13 @@ class Role {
   })
   @ApiProperty()
   users: User[];
+  constructor(role?: Partial<Role>) {
+    this.id = role.id;
+    this.name = role.name;
+    this.description = role.description;
+    this.createdAt = role.createdAt;
+    this.updatedAt = role.updatedAt;
+  }
 }
 
 export default Role;
