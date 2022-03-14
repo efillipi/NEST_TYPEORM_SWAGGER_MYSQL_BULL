@@ -41,7 +41,7 @@ describe('AuthenticationUserController', () => {
   });
 
   describe('Login', () => {
-    it('should Login a new todo item successfully', async () => {
+    it('should Login a new user item successfully', async () => {
       // Arrange
       const body: IRequestAuthenticationUserDTO = {
         email: 'teste@teste.com',
