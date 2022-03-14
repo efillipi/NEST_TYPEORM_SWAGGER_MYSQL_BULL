@@ -2,7 +2,7 @@ import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 import User from '../../entities/User';
 
 export class FakeUserRepository {
-  private Users = [];
+  private Users: User[] = [];
 
   public async findSomething(date: object): Promise<User | undefined> {
     const keys = Object.keys(date);
@@ -57,7 +57,7 @@ export class FakeUserRepository {
   }
 
   public async deleteFile(id: number): Promise<void> {
-    const findIndex = this.Users.findIndex((userId) => userId === id);
+    const findIndex = this.Users.findIndex((user) => user.id === id);
 
     this.Users.splice(findIndex, 1);
   }
