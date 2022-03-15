@@ -1,6 +1,7 @@
 import {
   CallHandler,
   ExecutionContext,
+  HttpException,
   Injectable,
   NestInterceptor,
   RequestTimeoutException,
@@ -17,14 +18,23 @@ import {
 export class TimeoutInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
-      timeout(8000),
+      timeout(3000),
       catchError((err) => {
         if (err instanceof TimeoutError) {
           return throwError(
-            () => new RequestTimeoutException('Tempo de reposta expirado'),
+            () => new RequestTimeoutException('Expired response time'),
           );
         }
-        return throwError(() => new Error());
+        return throwError(
+          () =>
+            new HttpException(
+              {
+                status: err.status,
+                error: err.message,
+              },
+              err.status,
+            ),
+        );
       }),
     );
   }

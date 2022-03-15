@@ -13,6 +13,12 @@ export class FakeRoleRepository {
     return findById;
   }
 
+  public async findOne(id: number): Promise<Role | undefined> {
+    const findById = this.Roles.find((role) => role.id === id);
+    console.log({ findById });
+    return findById;
+  }
+
   public async save(role: Role): Promise<Role> {
     const FindIndex = this.Roles.findIndex(
       (findRole) => findRole.id === role.id,
@@ -34,6 +40,12 @@ export class FakeRoleRepository {
     this.Roles[FindIndex] = role;
 
     return role;
+
+    // merge(cargo: Cargo, data: Cargo) {
+    //   Object.assign(cargo, { ...data });
+
+    //   return cargo;
+    // }
   }
 
   public async create({
